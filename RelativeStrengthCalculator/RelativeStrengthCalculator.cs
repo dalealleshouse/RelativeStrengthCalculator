@@ -13,7 +13,7 @@
                 throw new ArgumentNullException(nameof(weightConverterService));
             }
 
-            WeightConverterService = weightConverterService;
+            this.WeightConverterService = weightConverterService;
         }
 
         public abstract CalculatorType CalculatorType { get; }

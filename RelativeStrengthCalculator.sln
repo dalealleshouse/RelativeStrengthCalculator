@@ -3,14 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4606AA14-B479-4994-9FFE-1090497DBD60}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AEBACBA2-CFF9-4C81-A7C1-D9B1A5F6A522}"
 	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
+		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RelativeStrengthCalculator", "src\RelativeStrengthCalculator\RelativeStrengthCalculator.xproj", "{A1913966-93CA-487C-956C-BF02EDD02711}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelativeStrengthCalculator", "RelativeStrengthCalculator\RelativeStrengthCalculator.csproj", "{0966CAB9-C1BC-47D4-9172-5CC3DF18A49A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelativeStrengthCalculator.Tests", "RelativeStrengthCalculator.Tests\RelativeStrengthCalculator.Tests.csproj", "{C4A4AC20-816D-449C-B87C-504BEA821B85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,15 +18,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A1913966-93CA-487C-956C-BF02EDD02711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1913966-93CA-487C-956C-BF02EDD02711}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1913966-93CA-487C-956C-BF02EDD02711}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1913966-93CA-487C-956C-BF02EDD02711}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0966CAB9-C1BC-47D4-9172-5CC3DF18A49A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0966CAB9-C1BC-47D4-9172-5CC3DF18A49A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0966CAB9-C1BC-47D4-9172-5CC3DF18A49A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0966CAB9-C1BC-47D4-9172-5CC3DF18A49A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4A4AC20-816D-449C-B87C-504BEA821B85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4A4AC20-816D-449C-B87C-504BEA821B85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4A4AC20-816D-449C-B87C-504BEA821B85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4A4AC20-816D-449C-B87C-504BEA821B85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{A1913966-93CA-487C-956C-BF02EDD02711} = {4606AA14-B479-4994-9FFE-1090497DBD60}
 	EndGlobalSection
 EndGlobal
