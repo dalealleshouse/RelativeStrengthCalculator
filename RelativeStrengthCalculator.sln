@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4606AA14-B479-4994-9FFE-1090497DBD60}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AEBACBA2-CFF9-4C81-A7C1-D9B1A5F6A522}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RelativeStrengthCalculator", "src\RelativeStrengthCalculator\RelativeStrengthCalculator.xproj", "{A1913966-93CA-487C-956C-BF02EDD02711}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1913966-93CA-487C-956C-BF02EDD02711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1913966-93CA-487C-956C-BF02EDD02711}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1913966-93CA-487C-956C-BF02EDD02711}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1913966-93CA-487C-956C-BF02EDD02711}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A1913966-93CA-487C-956C-BF02EDD02711} = {4606AA14-B479-4994-9FFE-1090497DBD60}
+	EndGlobalSection
+EndGlobal
