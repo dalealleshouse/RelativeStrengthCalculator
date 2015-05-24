@@ -12,6 +12,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelativeStrengthCalculator"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelativeStrengthCalculator.Tests", "RelativeStrengthCalculator.Tests\RelativeStrengthCalculator.Tests.csproj", "{C4A4AC20-816D-449C-B87C-504BEA821B85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelativeStrengthCalculator.SchwartzMalone", "RelativeStrengthCalculator.SchwartzMalone\RelativeStrengthCalculator.SchwartzMalone.csproj", "{FA739F80-6321-4DF9-B627-C153A50551DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelativeStrengthCalculator.Wilks", "RelativeStrengthCalculator.Wilks\RelativeStrengthCalculator.Wilks.csproj", "{F9F59406-ECC2-41E7-BFB2-BB58A3BBC5BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelativeStrengthCalculator.Wilks.Tests", "RelativeStrengthCalculator.Wilks.Tests\RelativeStrengthCalculator.Wilks.Tests.csproj", "{D82DB531-62BA-42EB-A8C9-9A6259FBF87B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelativeStrengthCalculator.SchwartzMalone.Tests", "RelativeStrengthCalculator.SchwartzMalone.Tests\RelativeStrengthCalculator.SchwartzMalone.Tests.csproj", "{C2EFF621-057F-44B5-A88A-4A318D8EE1E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +34,22 @@ Global
 		{C4A4AC20-816D-449C-B87C-504BEA821B85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4A4AC20-816D-449C-B87C-504BEA821B85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4A4AC20-816D-449C-B87C-504BEA821B85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA739F80-6321-4DF9-B627-C153A50551DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA739F80-6321-4DF9-B627-C153A50551DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA739F80-6321-4DF9-B627-C153A50551DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA739F80-6321-4DF9-B627-C153A50551DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9F59406-ECC2-41E7-BFB2-BB58A3BBC5BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9F59406-ECC2-41E7-BFB2-BB58A3BBC5BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9F59406-ECC2-41E7-BFB2-BB58A3BBC5BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9F59406-ECC2-41E7-BFB2-BB58A3BBC5BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D82DB531-62BA-42EB-A8C9-9A6259FBF87B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D82DB531-62BA-42EB-A8C9-9A6259FBF87B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D82DB531-62BA-42EB-A8C9-9A6259FBF87B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D82DB531-62BA-42EB-A8C9-9A6259FBF87B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2EFF621-057F-44B5-A88A-4A318D8EE1E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2EFF621-057F-44B5-A88A-4A318D8EE1E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2EFF621-057F-44B5-A88A-4A318D8EE1E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2EFF621-057F-44B5-A88A-4A318D8EE1E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

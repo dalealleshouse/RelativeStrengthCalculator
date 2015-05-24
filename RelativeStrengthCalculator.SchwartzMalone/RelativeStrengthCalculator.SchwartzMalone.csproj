@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0966CAB9-C1BC-47D4-9172-5CC3DF18A49A}</ProjectGuid>
+    <ProjectGuid>{FA739F80-6321-4DF9-B627-C153A50551DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RelativeStrengthCalculator</RootNamespace>
-    <AssemblyName>RelativeStrengthCalculator</AssemblyName>
+    <RootNamespace>RelativeStrengthCalculator.SchwartzMalone</RootNamespace>
+    <AssemblyName>RelativeStrengthCalculator.SchwartzMalone</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,7 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>RelativeStrengthCalculator.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>RelativeStrengthCalculator.SchwartzMalone.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,13 +29,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>RelativeStrengthCalculator.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>RelativeStrengthCalculator.SchwartzMalone.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dea.Utilities, Version=1.0.5384.16133, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dea.Utilities.1.0.5384.16133\lib\net45\Dea.Utilities.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,22 +41,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalculatorType.cs" />
-    <Compile Include="DecimalExtensions.cs" />
-    <Compile Include="IRelativeStrengthCalculatorFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RelativeStrengthCalculator.cs" />
-    <Compile Include="RelativeStrengthCalculatorFactory.cs" />
-    <Compile Include="Sex.cs" />
-    <Compile Include="WeightConverter\IWeightConverterService.cs" />
-    <Compile Include="WeightConverter\WeightConverterService.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SchwartzMaloneCalculator.cs" />
+    <Compile Include="SchwartzMaloneLookUpTable.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RelativeStrengthCalculator\RelativeStrengthCalculator.csproj">
+      <Project>{0966CAB9-C1BC-47D4-9172-5CC3DF18A49A}</Project>
+      <Name>RelativeStrengthCalculator</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="RelativeStrengthCalculator.ruleset" />
+    <None Include="RelativeStrengthCalculator.SchwartzMalone.ruleset" />
+    <None Include="Resources\MaloneCoefficients.csv" />
+    <None Include="Resources\SwartzCoefficients.csv" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0-alpha006\tools\analyzers\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
