@@ -1,10 +1,18 @@
-﻿namespace RelativeStrengthCalculator.SchwartzMalone
+﻿// --------------------------------
+// <copyright file="SchwartzMaloneLookUpTable.cs">
+// Copyright (c) 2015 All rights reserved.
+// </copyright>
+// <author>dallesho</author>
+// <date>05/24/2015</date>
+// ---------------------------------
+
+namespace RelativeStrengthCalculator.SchwartzMalone
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    using Properties;
+    using global::RelativeStrengthCalculator.SchwartzMalone.Properties;
 
     public static class SchwartzMaloneLookUpTable
     {
@@ -26,19 +34,15 @@
         }
 
         private static IReadOnlyDictionary<double, decimal> BuildMen()
-        {
-            return
+            =>
                 Resources.SwartzCoefficients.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(s => s.Split(','))
                     .ToDictionary(a => Convert.ToDouble(a[0]), a => Convert.ToDecimal(a[1]));
-        }
 
         private static IReadOnlyDictionary<double, decimal> BuildWomen()
-        {
-            return
+            =>
                 Resources.MaloneCoefficients.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(s => s.Split(','))
                     .ToDictionary(a => Convert.ToDouble(a[0]), a => Convert.ToDecimal(a[1]));
-        }
     }
 }

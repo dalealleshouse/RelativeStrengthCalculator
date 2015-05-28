@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>RelativeStrengthCalculator.Wilks.Tests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,9 +29,24 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>RelativeStrengthCalculator.Wilks.Tests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetTestHelper, Version=1.0.5568.23718, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetTestHelper.1.0.5568.23718\lib\net45\DotNetTestHelper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,13 +58,34 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WilksCalculator\AdjustedTotalShould.cs" />
     <Compile Include="WilksCalculator\CoefficientShould.cs" />
-    <Compile Include="WilksCalculator\WilksCalculatorFactory.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="RelativeStrengthCalculator.Wilks.Tests.ruleset" />
+    <None Include="WilksCalculator\TestData.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0-alpha006\tools\analyzers\StyleCop.Analyzers.dll" />
+    <ProjectReference Include="..\RelativeStrengthCalculator.Tests\RelativeStrengthCalculator.Tests.csproj">
+      <Project>{c4a4ac20-816d-449c-b87c-504bea821b85}</Project>
+      <Name>RelativeStrengthCalculator.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RelativeStrengthCalculator.Wilks\RelativeStrengthCalculator.Wilks.csproj">
+      <Project>{f9f59406-ecc2-41e7-bfb2-bb58a3bbc5bc}</Project>
+      <Name>RelativeStrengthCalculator.Wilks</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RelativeStrengthCalculator\RelativeStrengthCalculator.csproj">
+      <Project>{0966CAB9-C1BC-47D4-9172-5CC3DF18A49A}</Project>
+      <Name>RelativeStrengthCalculator</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0-alpha008\tools\analyzers\C#\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

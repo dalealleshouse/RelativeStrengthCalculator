@@ -45,10 +45,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Moq, Version=4.2.1502.911, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -68,24 +64,29 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="RelativeStrengthCalculator.SchwartzMalone.Tests.ruleset" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0-alpha006\tools\analyzers\StyleCop.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="SchwartzMaloneCalculator\CoefficientTestData.xml">
+    <None Include="SchwartzMaloneCalculator\TestData.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RelativeStrengthCalculator.SchwartzMalone\RelativeStrengthCalculator.SchwartzMalone.csproj">
       <Project>{fa739f80-6321-4df9-b627-c153a50551dd}</Project>
       <Name>RelativeStrengthCalculator.SchwartzMalone</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RelativeStrengthCalculator.Tests\RelativeStrengthCalculator.Tests.csproj">
+      <Project>{c4a4ac20-816d-449c-b87c-504bea821b85}</Project>
+      <Name>RelativeStrengthCalculator.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RelativeStrengthCalculator\RelativeStrengthCalculator.csproj">
       <Project>{0966CAB9-C1BC-47D4-9172-5CC3DF18A49A}</Project>
       <Name>RelativeStrengthCalculator</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0-alpha008\tools\analyzers\C#\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,37 +1,38 @@
-﻿namespace RelativeStrengthCalculator.SchwartzMalone.Tests.SchwartzMaloneCalculator
+﻿// --------------------------------
+// <copyright file="CoefficientShould.cs">
+// Copyright (c) 2015 All rights reserved.
+// </copyright>
+// <author>dallesho</author>
+// <date>05/24/2015</date>
+// ---------------------------------
+
+namespace RelativeStrengthCalculator.SchwartzMalone.Tests.SchwartzMaloneCalculator
 {
     using System.Diagnostics;
 
     using DotNetTestHelper;
 
-    using WeightConverter;
+    using global::RelativeStrengthCalculator.Tests.Helpers;
+    using global::RelativeStrengthCalculator.WeightConverter;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using SchwartzMaloneCalculator = SchwartzMalone.SchwartzMaloneCalculator;
+    using SchwartzMaloneCalculator = global::RelativeStrengthCalculator.SchwartzMalone.SchwartzMaloneCalculator;
 
     [TestClass]
-    public class CoefficientShould
+    public class CoefficientShould : CalculatorTestBase
     {
-        public TestContext TestContext { get; set; }
-
         [TestMethod]
-        [DeploymentItem("SchwartzMaloneCalculator\\CoefficientTestData.xml")]
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "|DataDirectory|\\CoefficientTestData.xml", "Row", DataAccessMethod.Sequential)]
+        [DeploymentItem("SchwartzMaloneCalculator\\TestData.csv")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\TestData.csv", "TestData#csv", DataAccessMethod.Sequential)]
         public void GenerateCorrectCoefficient()
         {
-            var sex = (Sex)int.Parse(this.TestContext.DataRow["Sex"].ToString());
-            var weight = decimal.Parse(this.TestContext.DataRow["Weight"].ToString());
-            var expected = decimal.Parse(this.TestContext.DataRow["Coefficient"].ToString());
-
-            Debug.WriteLine(sex);
-            Debug.WriteLine(weight);
-            Debug.WriteLine(expected);
-
             var sut = new SutBuilder<SchwartzMaloneCalculator>().AddDependency(new WeightConverterService()).Build();
+            var testCase = this.GetTestCase();
+            Debug.WriteLine(testCase);
 
-            var result = sut.Coefficient(sex, weight);
-            Assert.AreEqual(expected, result);
+            var result = sut.Coefficient(testCase.Sex, testCase.Weight);
+            Assert.AreEqual(testCase.Coefficient, result);
         }
     }
 }

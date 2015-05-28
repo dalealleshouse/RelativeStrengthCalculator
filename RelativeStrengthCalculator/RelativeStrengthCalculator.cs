@@ -1,8 +1,16 @@
-﻿namespace RelativeStrengthCalculator
+﻿// --------------------------------
+// <copyright file="RelativeStrengthCalculator.cs">
+// Copyright (c) 2015 All rights reserved.
+// </copyright>
+// <author>dallesho</author>
+// <date>05/24/2015</date>
+// ---------------------------------
+
+namespace RelativeStrengthCalculator
 {
     using System;
 
-    using WeightConverter;
+    using global::RelativeStrengthCalculator.WeightConverter;
 
     public abstract class RelativeStrengthCalculator
     {

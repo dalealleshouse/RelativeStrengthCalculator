@@ -1,16 +1,22 @@
-﻿namespace RelativeStrengthCalculator
-{
-    using System.Globalization;
+﻿// --------------------------------
+// <copyright file="RelativeStrengthCalculatorFactory.cs">
+// Copyright (c) 2015 All rights reserved.
+// </copyright>
+// <author>dallesho</author>
+// <date>05/24/2015</date>
+// ---------------------------------
 
+namespace RelativeStrengthCalculator
+{
     using Dea.Utilities.Reflection;
 
-    using WeightConverter;
+    using global::RelativeStrengthCalculator.WeightConverter;
 
     public class RelativeStrengthCalculatorFactory : IRelativeStrengthCalculatorFactory
     {
-        private readonly IWeightConverterService _weightConverterService;
-
         private readonly ITypeLoader<RelativeStrengthCalculator> _typeLoader;
+
+        private readonly IWeightConverterService _weightConverterService;
 
         public RelativeStrengthCalculatorFactory(IWeightConverterService weightConverterService, ITypeLoader<RelativeStrengthCalculator> typeLoader)
         {
@@ -20,7 +26,7 @@
 
         public RelativeStrengthCalculator Build(CalculatorType calculatorType)
         {
-            var name = string.Format(CultureInfo.InvariantCulture, "{0}Calculator", calculatorType);
+            var name = $"{calculatorType}Calculator";
             var calc = this._typeLoader.LoadType(name, this._weightConverterService);
             return calc;
         }

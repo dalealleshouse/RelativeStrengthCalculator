@@ -37,6 +37,10 @@
     <CodeAnalysisRuleSet>RelativeStrengthCalculator.Tests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dea.Utilities, Version=1.0.5384.16133, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dea.Utilities.1.0.5384.16133\lib\net45\Dea.Utilities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DotNetTestHelper, Version=1.0.5568.23718, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetTestHelper.1.0.5568.23718\lib\net45\DotNetTestHelper.dll</HintPath>
       <Private>True</Private>
@@ -51,6 +55,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -65,8 +70,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Helpers\CalculatorTestBase.cs" />
     <Compile Include="DecimalExtensions\PowerShould.cs" />
+    <Compile Include="Helpers\CalculatorTestCase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RelativeStrengthCalculatorFactory\BuildShould.cs" />
     <Compile Include="WeightConverterService\ToKilogramShould.cs" />
     <Compile Include="WeightConverterService\ToPoundsShould.cs" />
     <Compile Include="WeightConverterService\WeightConverterServiceTestBase.cs" />
@@ -77,13 +85,21 @@
     <None Include="RelativeStrengthCalculator.Tests.ruleset" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0-alpha006\tools\analyzers\StyleCop.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\RelativeStrengthCalculator.SchwartzMalone\RelativeStrengthCalculator.SchwartzMalone.csproj">
+      <Project>{FA739F80-6321-4DF9-B627-C153A50551DD}</Project>
+      <Name>RelativeStrengthCalculator.SchwartzMalone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RelativeStrengthCalculator.Wilks\RelativeStrengthCalculator.Wilks.csproj">
+      <Project>{F9F59406-ECC2-41E7-BFB2-BB58A3BBC5BC}</Project>
+      <Name>RelativeStrengthCalculator.Wilks</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RelativeStrengthCalculator\RelativeStrengthCalculator.csproj">
       <Project>{0966CAB9-C1BC-47D4-9172-5CC3DF18A49A}</Project>
       <Name>RelativeStrengthCalculator</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0-alpha008\tools\analyzers\C#\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

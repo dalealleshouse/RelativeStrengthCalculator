@@ -1,71 +1,41 @@
-﻿//  --------------------------------
-//  <copyright file="AdjustedTotalShould.cs">
-//      Copyright (c) 2014 All rights reserved.
-//  </copyright>
-//  <author>Alleshouse, Dale</author>
-//  <date>08/09/2014</date>
-//  ---------------------------------
+﻿// --------------------------------
+// <copyright file="AdjustedTotalShould.cs">
+// Copyright (c) 2015 All rights reserved.
+// </copyright>
+// <author>dallesho</author>
+// <date>05/24/2015</date>
+// ---------------------------------
+
 namespace RelativeStrengthCalculator.Wilks.Tests.WilksCalculator
 {
     using System;
+    using System.Diagnostics;
+
+    using DotNetTestHelper;
+
+    using global::RelativeStrengthCalculator.Tests.Helpers;
+    using global::RelativeStrengthCalculator.WeightConverter;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using WilksCalculator = global::RelativeStrengthCalculator.Wilks.WilksCalculator;
 
     [TestClass]
-    public class AdjustedTotalShould
+    public class AdjustedTotalShould : CalculatorTestBase
     {
         // All data is tested against this page
         // http://tsampa.org/training/scripts/relative_strength/
         [TestMethod]
-        public void CalculateLowCoefficient()
+        [DeploymentItem("WilksCalculator\\TestData.csv")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\TestData.csv", "TestData#csv", DataAccessMethod.Sequential)]
+        public void GenerateCorrectTotal()
         {
-            var sut = new WilksCalculatorFactory().Build();
+            var sut = new SutBuilder<WilksCalculator>().AddDependency(new WeightConverterService()).Build();
+            var testCase = this.GetTestCase();
+            Debug.WriteLine(testCase);
 
-            var result = sut.AdjustedTotal(Sex.Female, 80, 600);
-            Assert.AreEqual(426.90116735m, Math.Round(result, 8));
-        }
-
-        [TestMethod]
-        public void CalculateHighCoefficient()
-        {
-            var sut = new WilksCalculatorFactory().Build();
-
-            var result = sut.AdjustedTotal(Sex.Male, 450, 2100);
-            Assert.AreEqual(506.37108977m, Math.Round(result, 8));
-        }
-
-        [TestMethod]
-        public void CalculateMaleCoefficient()
-        {
-            var sut = new WilksCalculatorFactory().Build();
-
-            var result = sut.AdjustedTotal(Sex.Male, 218.2m, 1765);
-            Assert.AreEqual(489.26935697m, Math.Round(result, 8));
-        }
-
-        [TestMethod]
-        public void CalculateMaleCoefficient2()
-        {
-            var sut = new WilksCalculatorFactory().Build();
-
-            var result = sut.AdjustedTotal(Sex.Male, 197.6m, 1823);
-            Assert.AreEqual(528.99941990m, Math.Round(result, 8));
-        }
-
-        [TestMethod]
-        public void CalculateFemaleCoefficient()
-        {
-            var sut = new WilksCalculatorFactory().Build();
-
-            var result = sut.AdjustedTotal(Sex.Female, 142.6m, 1790);
-            Assert.AreEqual(854.90232676m, Math.Round(result, 8));
-        }
-
-        [TestMethod]
-        public void CalculateFemaleCoefficient2()
-        {
-            var sut = new WilksCalculatorFactory().Build();
-
-            var result = sut.AdjustedTotal(Sex.Female, 164.8m, 1125);
-            Assert.AreEqual(486.11327924m, Math.Round(result, 8));
+            var result = sut.AdjustedTotal(testCase.Sex, testCase.Weight, testCase.Total);
+            Assert.AreEqual(testCase.Score, Math.Round(result, 7));
         }
     }
 }

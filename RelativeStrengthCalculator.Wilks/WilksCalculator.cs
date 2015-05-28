@@ -1,10 +1,18 @@
-﻿namespace RelativeStrengthCalculator.Wilks
+﻿// --------------------------------
+// <copyright file="WilksCalculator.cs">
+// Copyright (c) 2015 All rights reserved.
+// </copyright>
+// <author>dallesho</author>
+// <date>05/24/2015</date>
+// ---------------------------------
+
+namespace RelativeStrengthCalculator.Wilks
 {
     using System;
 
     using global::RelativeStrengthCalculator.WeightConverter;
 
-    internal class WilksCalculator : RelativeStrengthCalculator
+    public class WilksCalculator : RelativeStrengthCalculator
     {
         public WilksCalculator(IWeightConverterService weightConverterService)
             : base(weightConverterService)

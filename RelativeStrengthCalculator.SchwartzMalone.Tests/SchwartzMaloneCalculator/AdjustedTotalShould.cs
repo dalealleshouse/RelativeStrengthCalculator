@@ -1,40 +1,38 @@
-﻿namespace RelativeStrengthCalculator.SchwartzMalone.Tests.SchwartzMaloneCalculator
+﻿// --------------------------------
+// <copyright file="AdjustedTotalShould.cs">
+// Copyright (c) 2015 All rights reserved.
+// </copyright>
+// <author>dallesho</author>
+// <date>05/24/2015</date>
+// ---------------------------------
+
+namespace RelativeStrengthCalculator.SchwartzMalone.Tests.SchwartzMaloneCalculator
 {
     using System.Diagnostics;
 
     using DotNetTestHelper;
 
-    using WeightConverter;
+    using global::RelativeStrengthCalculator.Tests.Helpers;
+    using global::RelativeStrengthCalculator.WeightConverter;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using SchwartzMaloneCalculator = SchwartzMalone.SchwartzMaloneCalculator;
+    using SchwartzMaloneCalculator = global::RelativeStrengthCalculator.SchwartzMalone.SchwartzMaloneCalculator;
 
     [TestClass]
-    public class AdjustedTotalShould
+    public class AdjustedTotalShould : CalculatorTestBase
     {
-        public TestContext TestContext { get; set; }
-
         [TestMethod]
-        [DeploymentItem("RelativeStrength\\SchwartzMaloneCalculator\\CoefficientTestData.xml")]
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "|DataDirectory|\\CoefficientTestData.xml", "Row", DataAccessMethod.Sequential)]
-        public void GenerateCorrectCoefficient()
+        [DeploymentItem("SchwartzMaloneCalculator\\TestData.csv")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\TestData.csv", "TestData#csv", DataAccessMethod.Sequential)]
+        public void GenerateCorrectTotal()
         {
-            var sex = (Sex)int.Parse(this.TestContext.DataRow["Sex"].ToString());
-            var weight = decimal.Parse(this.TestContext.DataRow["Weight"].ToString());
-            var total = decimal.Parse(this.TestContext.DataRow["Total"].ToString());
-            var expected = decimal.Parse(this.TestContext.DataRow["Score"].ToString());
-            var coefficient = decimal.Parse(this.TestContext.DataRow["Coefficient"].ToString());
-
-            Debug.WriteLine(sex);
-            Debug.WriteLine(weight);
-            Debug.WriteLine(total);
-            Debug.WriteLine(coefficient);
-
             var sut = new SutBuilder<SchwartzMaloneCalculator>().AddDependency(new WeightConverterService()).Build();
+            var testCase = this.GetTestCase();
+            Debug.WriteLine(testCase);
 
-            var result = sut.AdjustedTotal(sex, weight, total);
-            Assert.AreEqual(expected, result);
+            var result = sut.AdjustedTotal(testCase.Sex, testCase.Weight, testCase.Total);
+            Assert.AreEqual(testCase.Score, result);
         }
     }
 }
