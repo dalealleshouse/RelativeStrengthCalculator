@@ -6,6 +6,8 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AEBACBA2-CFF9-4C81-A7C1-D9B1A5F6A522}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelativeStrengthCalculator", "RelativeStrengthCalculator\RelativeStrengthCalculator.csproj", "{0966CAB9-C1BC-47D4-9172-5CC3DF18A49A}"

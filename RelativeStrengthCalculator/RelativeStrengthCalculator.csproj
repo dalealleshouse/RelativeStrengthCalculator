@@ -54,6 +54,7 @@
     <Compile Include="Sex.cs" />
     <Compile Include="WeightConverter\IWeightConverterService.cs" />
     <Compile Include="WeightConverter\WeightConverterService.cs" />
+    <Compile Include="WeightUnit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

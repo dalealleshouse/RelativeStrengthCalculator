@@ -8,10 +8,16 @@
 
 namespace RelativeStrengthCalculator.WeightConverter
 {
+    using System;
+
     public interface IWeightConverterService
     {
+        decimal Convert(WeightUnit from, WeightUnit to, decimal weight);
+
+        [Obsolete("Migrated to Convert(WeightUnit, WeightUnit)")]
         decimal ToPounds(decimal kilograms);
 
+        [Obsolete("Migrated to Convert(WeightUnit, WeightUnit)")]
         decimal ToKilogram(decimal pounds);
     }
 }
