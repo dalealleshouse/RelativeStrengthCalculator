@@ -36,8 +36,8 @@ namespace RelativeStrengthCalculator.SchwartzMalone
         {
             var coefficient = this.Coefficient(unit, sex, bodyWeight);
 
-            // Normally you would have to convert to the base weight unit in before calculating the total
-            // Unfortunately, my coefficient tables are in but the real base unit for Schwartz\Malone is lbs
+            // Normally you would have to convert to the base weight unit before calculating the total
+            // Unfortunately, my coefficient tables are in kilo but the real base unit for Schwartz\Malone is lbs
             var weighInPounds = this.WeightConverterService.Convert(unit, WeightUnit.Pounds, total);
             return coefficient * weighInPounds;
         }
