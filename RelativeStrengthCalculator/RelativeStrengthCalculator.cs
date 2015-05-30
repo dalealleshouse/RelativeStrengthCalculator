@@ -32,7 +32,12 @@ namespace RelativeStrengthCalculator
 
         public abstract decimal Coefficient(WeightUnit unit, Sex sex, decimal bodyWeight);
 
-        public abstract decimal AdjustedTotal(WeightUnit unit, Sex sex, decimal bodyWeight, decimal total);
+        public virtual decimal AdjustedTotal(WeightUnit unit, Sex sex, decimal bodyWeight, decimal total)
+        {
+            var coefficient = this.Coefficient(unit, sex, bodyWeight);
+            var baseWeight = this.GetBaseWeight(unit, total);
+            return coefficient * baseWeight;
+        }
 
         protected decimal GetBaseWeight(WeightUnit desiredUnits, decimal weight) => this.WeightConverterService.Convert(desiredUnits, this.BaseWeightUnit, weight);
     }

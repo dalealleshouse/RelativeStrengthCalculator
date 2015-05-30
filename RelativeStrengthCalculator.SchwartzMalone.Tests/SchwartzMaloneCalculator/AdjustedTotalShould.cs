@@ -8,6 +8,7 @@
 
 namespace RelativeStrengthCalculator.SchwartzMalone.Tests.SchwartzMaloneCalculator
 {
+    using System;
     using System.Diagnostics;
 
     using DotNetTestHelper;
@@ -45,7 +46,7 @@ namespace RelativeStrengthCalculator.SchwartzMalone.Tests.SchwartzMaloneCalculat
             Debug.WriteLine(testCase);
 
             var result = sut.AdjustedTotal(WeightUnit.Kilograms, testCase.Sex, testCase.Weight, testCase.Total);
-            Assert.AreEqual(testCase.Score, result);
+            Assert.AreEqual(testCase.Score, Math.Round(result, 9));
         }
     }
 }
