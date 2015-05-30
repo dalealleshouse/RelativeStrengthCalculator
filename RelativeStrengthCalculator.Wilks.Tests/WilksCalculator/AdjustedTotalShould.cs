@@ -34,8 +34,21 @@ namespace RelativeStrengthCalculator.Wilks.Tests.WilksCalculator
             var testCase = this.GetTestCase();
             Debug.WriteLine(testCase);
 
-            var result = sut.AdjustedTotal(testCase.Sex, testCase.Weight, testCase.Total);
+            var result = sut.AdjustedTotal(WeightUnit.Pounds, testCase.Sex, testCase.Weight, testCase.Total);
             Assert.AreEqual(testCase.Score, Math.Round(result, 7));
+        }
+
+        [TestMethod]
+        [DeploymentItem("WilksCalculator\\KiloTestData.csv")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\KiloTestData.csv", "KiloTestData#csv", DataAccessMethod.Sequential)]
+        public void GenerateCorrectTotalForKilo()
+        {
+            var sut = new SutBuilder<WilksCalculator>().AddDependency(new WeightConverterService()).Build();
+            var testCase = this.GetTestCase();
+            Debug.WriteLine(testCase);
+
+            var result = sut.AdjustedTotal(WeightUnit.Kilograms, testCase.Sex, testCase.Weight, testCase.Total);
+            Assert.AreEqual(testCase.Score, Math.Round(result, 9));
         }
     }
 }

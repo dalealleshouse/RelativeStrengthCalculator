@@ -44,15 +44,16 @@ namespace RelativeStrengthCalculator.WeightConverter
         }
 
         private static HashSet<Multiplier> BuildMultipliers()
-        {
-            return new HashSet<Multiplier>
-                       {
-                           new Multiplier(WeightUnit.Pounds, WeightUnit.Pounds, 1),
-                           new Multiplier(WeightUnit.Kilograms, WeightUnit.Kilograms, 1),
-                           new Multiplier(WeightUnit.Pounds, WeightUnit.Kilograms, 0.45359237m),
-                           new Multiplier(WeightUnit.Kilograms, WeightUnit.Pounds, 2.204622622m)
-                       };
-        }
+            =>
+                new HashSet<Multiplier>
+                    {
+                        new Multiplier(WeightUnit.Pounds, WeightUnit.Pounds, 1),
+                        new Multiplier(WeightUnit.Kilograms, WeightUnit.Kilograms, 1),
+                        new Multiplier(WeightUnit.Pounds, WeightUnit.Kilograms, 0.45359237m),
+                        new Multiplier(WeightUnit.Kilograms, WeightUnit.Pounds, 2.204622622m)
+                    }
+
+;
 
         private class Multiplier
         {

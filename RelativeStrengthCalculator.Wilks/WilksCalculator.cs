@@ -19,23 +19,25 @@ namespace RelativeStrengthCalculator.Wilks
         {
         }
 
-        public override CalculatorType CalculatorType { get; } = CalculatorType.Wilks;
+        protected override WeightUnit BaseWeightUnit => WeightUnit.Kilograms;
 
-        public override decimal Coefficient(Sex sex, decimal bodyWeightInPounds)
+        public override CalculatorType CalculatorType => CalculatorType.Wilks;
+
+        public override decimal Coefficient(WeightUnit unit, Sex sex, decimal bodyWeight)
         {
             var coefficients = this.BuildCoefficients(sex);
-            var kgWeight = this.WeightConverterService.ToKilogram(bodyWeightInPounds);
+            var baseWeight = this.GetBaseWeight(unit, bodyWeight);
 
             return 500
-                   / (coefficients.A + (coefficients.B * kgWeight) + (coefficients.C * kgWeight.Power(2)) + (coefficients.D * kgWeight.Power(3))
-                      + (coefficients.E * kgWeight.Power(4)) + (coefficients.F * kgWeight.Power(5)));
+                   / (coefficients.A + (coefficients.B * baseWeight) + (coefficients.C * baseWeight.Power(2)) + (coefficients.D * baseWeight.Power(3))
+                      + (coefficients.E * baseWeight.Power(4)) + (coefficients.F * baseWeight.Power(5)));
         }
 
-        public override decimal AdjustedTotal(Sex sex, decimal bodyWeightInPounds, decimal totalInPounds)
+        public override decimal AdjustedTotal(WeightUnit unit, Sex sex, decimal bodyWeightInPounds, decimal total)
         {
-            var coefficient = this.Coefficient(sex, bodyWeightInPounds);
-            var kiloTotal = this.WeightConverterService.ToKilogram(totalInPounds);
-            return coefficient * kiloTotal;
+            var coefficient = this.Coefficient(unit, sex, bodyWeightInPounds);
+            var baseWeight = this.GetBaseWeight(unit, total);
+            return coefficient * baseWeight;
         }
 
         private Coefficients BuildCoefficients(Sex sex)

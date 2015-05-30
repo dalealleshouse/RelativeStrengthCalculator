@@ -63,6 +63,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="RelativeStrengthCalculator.Wilks.Tests.ruleset" />
+    <None Include="WilksCalculator\KiloTestData.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="WilksCalculator\TestData.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

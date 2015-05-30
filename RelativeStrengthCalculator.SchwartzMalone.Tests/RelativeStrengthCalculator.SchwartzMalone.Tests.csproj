@@ -64,6 +64,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="RelativeStrengthCalculator.SchwartzMalone.Tests.ruleset" />
+    <None Include="SchwartzMaloneCalculator\KiloTestData.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="SchwartzMaloneCalculator\TestData.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -24,12 +24,16 @@ namespace RelativeStrengthCalculator
             this.WeightConverterService = weightConverterService;
         }
 
+        protected abstract WeightUnit BaseWeightUnit { get; }
+
         public abstract CalculatorType CalculatorType { get; }
 
         protected IWeightConverterService WeightConverterService { get; }
 
-        public abstract decimal Coefficient(Sex sex, decimal bodyWeightInPounds);
+        public abstract decimal Coefficient(WeightUnit unit, Sex sex, decimal bodyWeight);
 
-        public abstract decimal AdjustedTotal(Sex sex, decimal bodyWeightInPounds, decimal totalInPounds);
+        public abstract decimal AdjustedTotal(WeightUnit unit, Sex sex, decimal bodyWeight, decimal total);
+
+        protected decimal GetBaseWeight(WeightUnit desiredUnits, decimal weight) => this.WeightConverterService.Convert(desiredUnits, this.BaseWeightUnit, weight);
     }
 }

@@ -19,21 +19,23 @@ namespace RelativeStrengthCalculator.SchwartzMalone
         {
         }
 
+        protected override WeightUnit BaseWeightUnit => WeightUnit.Kilograms;
+
         public override CalculatorType CalculatorType => CalculatorType.SchwartzMalone;
 
-        public override decimal Coefficient(Sex sex, decimal bodyWeightInPounds)
+        public override decimal Coefficient(WeightUnit unit, Sex sex, decimal bodyWeight)
         {
             var table = SchwartzMaloneLookUpTable.GetLookupTable(sex);
-            var kiloWeight = this.WeightConverterService.ToKilogram(bodyWeightInPounds);
-            var weight = (double)Math.Round(kiloWeight, 1);
+            var baseWeight = this.GetBaseWeight(unit, bodyWeight);
+            var weight = (double)Math.Round(baseWeight, 1);
 
             return !table.ContainsKey(weight) ? 0 : table[weight];
         }
 
-        public override decimal AdjustedTotal(Sex sex, decimal bodyWeightInPounds, decimal totalInPounds)
+        public override decimal AdjustedTotal(WeightUnit unit, Sex sex, decimal bodyWeight, decimal total)
         {
-            var coefficient = this.Coefficient(sex, bodyWeightInPounds);
-            return coefficient * totalInPounds;
+            var coefficient = this.Coefficient(unit, sex, bodyWeight);
+            return coefficient * total;
         }
     }
 }

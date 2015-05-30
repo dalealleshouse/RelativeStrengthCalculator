@@ -31,7 +31,20 @@ namespace RelativeStrengthCalculator.SchwartzMalone.Tests.SchwartzMaloneCalculat
             var testCase = this.GetTestCase();
             Debug.WriteLine(testCase);
 
-            var result = sut.AdjustedTotal(testCase.Sex, testCase.Weight, testCase.Total);
+            var result = sut.AdjustedTotal(WeightUnit.Pounds, testCase.Sex, testCase.Weight, testCase.Total);
+            Assert.AreEqual(testCase.Score, result);
+        }
+
+        [TestMethod]
+        [DeploymentItem("SchwartzMaloneCalculator\\KiloTestData.csv")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\KiloTestData.csv", "KiloTestData#csv", DataAccessMethod.Sequential)]
+        public void GenerateCorrectTotalForKilograms()
+        {
+            var sut = new SutBuilder<SchwartzMaloneCalculator>().AddDependency(new WeightConverterService()).Build();
+            var testCase = this.GetTestCase();
+            Debug.WriteLine(testCase);
+
+            var result = sut.AdjustedTotal(WeightUnit.Kilograms, testCase.Sex, testCase.Weight, testCase.Total);
             Assert.AreEqual(testCase.Score, result);
         }
     }
