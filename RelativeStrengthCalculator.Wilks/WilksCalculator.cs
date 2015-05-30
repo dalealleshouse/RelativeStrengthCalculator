@@ -33,9 +33,9 @@ namespace RelativeStrengthCalculator.Wilks
                       + (coefficients.E * baseWeight.Power(4)) + (coefficients.F * baseWeight.Power(5)));
         }
 
-        public override decimal AdjustedTotal(WeightUnit unit, Sex sex, decimal bodyWeightInPounds, decimal total)
+        public override decimal AdjustedTotal(WeightUnit unit, Sex sex, decimal bodyWeight, decimal total)
         {
-            var coefficient = this.Coefficient(unit, sex, bodyWeightInPounds);
+            var coefficient = this.Coefficient(unit, sex, bodyWeight);
             var baseWeight = this.GetBaseWeight(unit, total);
             return coefficient * baseWeight;
         }
