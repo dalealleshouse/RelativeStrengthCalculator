@@ -56,12 +56,12 @@ namespace RelativeStrengthCalculator.Api.Controllers
             return this.Ok(result);
         }
 
-        private class CoefficientDto
+        internal class CoefficientDto
         {
             public decimal Coefficient { get; set; }
         }
 
-        private class ScoreDto
+        internal class ScoreDto
         {
             public decimal Coefficient { get; set; }
 
