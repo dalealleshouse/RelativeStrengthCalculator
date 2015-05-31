@@ -10,8 +10,6 @@ namespace RelativeStrengthCalculator.Tests.RelativeStrengthCalculatorFactory
 {
     using Dea.Utilities.Reflection;
 
-    using DotNetTestHelper;
-
     using global::RelativeStrengthCalculator.SchwartzMalone;
     using global::RelativeStrengthCalculator.WeightConverter;
     using global::RelativeStrengthCalculator.Wilks;
@@ -28,23 +26,20 @@ namespace RelativeStrengthCalculator.Tests.RelativeStrengthCalculatorFactory
         [TestInitialize]
         public void Init()
         {
-            this._sut =
-                new SutBuilder<RelativeStrengthCalculatorFactory>().AddDependency(new WeightConverterService())
-                    .AddDependency(new TypeLoader<RelativeStrengthCalculator>(new TypeLocator()))
-                    .Build();
+            this._sut = new RelativeStrengthCalculatorFactory(new WeightConverterService(), new TypeLoader<RelativeStrengthCalculator>(new TypeLocator()));
         }
 
         [TestMethod]
         public void CreateSchwartzMaloneCalculator()
         {
-            var result = this._sut.Build(CalculatorType.SchwartzMalone);
+            var result = this._sut.Build(CalculatorType.SchwartzMalone, WeightUnit.Pounds);
             Assert.IsInstanceOfType(result, typeof(SchwartzMaloneCalculator));
         }
 
         [TestMethod]
         public void CreateWilksCalculator()
         {
-            var result = this._sut.Build(CalculatorType.Wilks);
+            var result = this._sut.Build(CalculatorType.Wilks, WeightUnit.Kilograms);
             Assert.IsInstanceOfType(result, typeof(WilksCalculator));
         }
     }

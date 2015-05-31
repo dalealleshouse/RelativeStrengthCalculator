@@ -14,7 +14,7 @@ namespace RelativeStrengthCalculator
 
     public abstract class RelativeStrengthCalculator
     {
-        protected RelativeStrengthCalculator(IWeightConverterService weightConverterService)
+        protected RelativeStrengthCalculator(IWeightConverterService weightConverterService, WeightUnit desiredWeightUnit)
         {
             if (weightConverterService == null)
             {
@@ -22,6 +22,7 @@ namespace RelativeStrengthCalculator
             }
 
             this.WeightConverterService = weightConverterService;
+            this.DesiredWeightUnit = desiredWeightUnit;
         }
 
         protected abstract WeightUnit BaseWeightUnit { get; }
@@ -30,15 +31,17 @@ namespace RelativeStrengthCalculator
 
         protected IWeightConverterService WeightConverterService { get; }
 
-        public abstract decimal Coefficient(WeightUnit unit, Sex sex, decimal bodyWeight);
+        protected WeightUnit DesiredWeightUnit { get; set; }
 
-        public virtual decimal AdjustedTotal(WeightUnit unit, Sex sex, decimal bodyWeight, decimal total)
+        public abstract decimal Coefficient(Sex sex, decimal bodyWeight);
+
+        public virtual decimal AdjustedTotal(Sex sex, decimal bodyWeight, decimal total)
         {
-            var coefficient = this.Coefficient(unit, sex, bodyWeight);
-            var baseWeight = this.GetBaseWeight(unit, total);
+            var coefficient = this.Coefficient(sex, bodyWeight);
+            var baseWeight = this.GetBaseWeight(total);
             return coefficient * baseWeight;
         }
 
-        protected decimal GetBaseWeight(WeightUnit desiredUnits, decimal weight) => this.WeightConverterService.Convert(desiredUnits, this.BaseWeightUnit, weight);
+        protected decimal GetBaseWeight(decimal weight) => this.WeightConverterService.Convert(this.DesiredWeightUnit, this.BaseWeightUnit, weight);
     }
 }

@@ -14,8 +14,8 @@ namespace RelativeStrengthCalculator.Wilks
 
     public class WilksCalculator : RelativeStrengthCalculator
     {
-        public WilksCalculator(IWeightConverterService weightConverterService)
-            : base(weightConverterService)
+        public WilksCalculator(IWeightConverterService weightConverterService, WeightUnit desiredWeightUnit)
+            : base(weightConverterService, desiredWeightUnit)
         {
         }
 
@@ -23,10 +23,10 @@ namespace RelativeStrengthCalculator.Wilks
 
         public override CalculatorType CalculatorType => CalculatorType.Wilks;
 
-        public override decimal Coefficient(WeightUnit unit, Sex sex, decimal bodyWeight)
+        public override decimal Coefficient(Sex sex, decimal bodyWeight)
         {
             var coefficients = this.BuildCoefficients(sex);
-            var baseWeight = this.GetBaseWeight(unit, bodyWeight);
+            var baseWeight = this.GetBaseWeight(bodyWeight);
 
             return 500
                    / (coefficients.A + (coefficients.B * baseWeight) + (coefficients.C * baseWeight.Power(2)) + (coefficients.D * baseWeight.Power(3))

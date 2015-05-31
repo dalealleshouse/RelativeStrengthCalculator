@@ -49,19 +49,35 @@
     <Compile Include="DecimalExtensions.cs" />
     <Compile Include="IRelativeStrengthCalculatorFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="RelativeStrengthCalculator.cs" />
     <Compile Include="RelativeStrengthCalculatorFactory.cs" />
+    <Compile Include="SchwartzMalone\SchwartzMaloneCalculator.cs" />
+    <Compile Include="SchwartzMalone\SchwartzMaloneLookUpTable.cs" />
     <Compile Include="Sex.cs" />
     <Compile Include="WeightConverter\IWeightConverterService.cs" />
     <Compile Include="WeightConverter\WeightConverterService.cs" />
     <Compile Include="WeightUnit.cs" />
+    <Compile Include="Wilks\WilksCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="RelativeStrengthCalculator.ruleset" />
+    <None Include="Resources\MaloneCoefficients.csv" />
+    <None Include="Resources\SwartzCoefficients.csv" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0-alpha008\tools\analyzers\C#\StyleCop.Analyzers.dll" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0-alpha009\tools\analyzers\C#\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,6 +10,6 @@ namespace RelativeStrengthCalculator
 {
     public interface IRelativeStrengthCalculatorFactory
     {
-        RelativeStrengthCalculator Build(CalculatorType calculatorType);
+        RelativeStrengthCalculator Build(CalculatorType calculatorType, WeightUnit desiredUnit);
     }
 }

@@ -8,8 +8,6 @@
 
 namespace RelativeStrengthCalculator.Tests.WeightConverterService
 {
-    using DotNetTestHelper;
-
     using global::RelativeStrengthCalculator.WeightConverter;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -22,7 +20,7 @@ namespace RelativeStrengthCalculator.Tests.WeightConverterService
         [TestInitialize]
         public void Init()
         {
-            this.Sut = new SutBuilder<WeightConverterService>().Build();
+            this.Sut = new WeightConverterService();
         }
     }
 }

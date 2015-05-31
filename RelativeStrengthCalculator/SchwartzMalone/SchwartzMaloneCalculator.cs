@@ -14,8 +14,8 @@ namespace RelativeStrengthCalculator.SchwartzMalone
 
     public class SchwartzMaloneCalculator : RelativeStrengthCalculator
     {
-        public SchwartzMaloneCalculator(IWeightConverterService weightConverterService)
-            : base(weightConverterService)
+        public SchwartzMaloneCalculator(IWeightConverterService weightConverterService, WeightUnit desiredWeightUnit)
+            : base(weightConverterService, desiredWeightUnit)
         {
         }
 
@@ -23,22 +23,22 @@ namespace RelativeStrengthCalculator.SchwartzMalone
 
         public override CalculatorType CalculatorType => CalculatorType.SchwartzMalone;
 
-        public override decimal Coefficient(WeightUnit unit, Sex sex, decimal bodyWeight)
+        public override decimal Coefficient(Sex sex, decimal bodyWeight)
         {
             var table = SchwartzMaloneLookUpTable.GetLookupTable(sex);
-            var baseWeight = this.GetBaseWeight(unit, bodyWeight);
+            var baseWeight = this.GetBaseWeight(bodyWeight);
             var weight = (double)Math.Round(baseWeight, 1);
 
             return !table.ContainsKey(weight) ? 0 : table[weight];
         }
 
-        public override decimal AdjustedTotal(WeightUnit unit, Sex sex, decimal bodyWeight, decimal total)
+        public override decimal AdjustedTotal(Sex sex, decimal bodyWeight, decimal total)
         {
-            var coefficient = this.Coefficient(unit, sex, bodyWeight);
+            var coefficient = this.Coefficient(sex, bodyWeight);
 
             // Normally you would have to convert to the base weight unit before calculating the total
             // Unfortunately, my coefficient tables are in kilo but the real base unit for Schwartz\Malone is lbs
-            var weighInPounds = this.WeightConverterService.Convert(unit, WeightUnit.Pounds, total);
+            var weighInPounds = this.WeightConverterService.Convert(this.DesiredWeightUnit, WeightUnit.Pounds, total);
             return coefficient * weighInPounds;
         }
     }

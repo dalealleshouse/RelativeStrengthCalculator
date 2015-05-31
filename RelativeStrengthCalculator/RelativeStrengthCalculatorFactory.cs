@@ -24,10 +24,10 @@ namespace RelativeStrengthCalculator
             this._typeLoader = typeLoader;
         }
 
-        public RelativeStrengthCalculator Build(CalculatorType calculatorType)
+        public RelativeStrengthCalculator Build(CalculatorType calculatorType, WeightUnit desiredUnit)
         {
             var name = $"{calculatorType}Calculator";
-            var calc = this._typeLoader.LoadType(name, this._weightConverterService);
+            var calc = this._typeLoader.LoadType(name, this._weightConverterService, desiredUnit);
             return calc;
         }
     }

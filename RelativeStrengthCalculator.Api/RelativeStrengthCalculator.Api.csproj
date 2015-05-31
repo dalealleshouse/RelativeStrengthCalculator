@@ -43,7 +43,10 @@
       <HintPath>..\packages\Dea.Utilities.1.0.5384.16133\lib\net45\Dea.Utilities.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1-beta3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
@@ -71,9 +74,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http.Formatting">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -111,14 +111,6 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RelativeStrengthCalculator.SchwartzMalone\RelativeStrengthCalculator.SchwartzMalone.csproj">
-      <Project>{fa739f80-6321-4df9-b627-c153a50551dd}</Project>
-      <Name>RelativeStrengthCalculator.SchwartzMalone</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RelativeStrengthCalculator.Wilks\RelativeStrengthCalculator.Wilks.csproj">
-      <Project>{f9f59406-ecc2-41e7-bfb2-bb58a3bbc5bc}</Project>
-      <Name>RelativeStrengthCalculator.Wilks</Name>
-    </ProjectReference>
     <ProjectReference Include="..\RelativeStrengthCalculator\RelativeStrengthCalculator.csproj">
       <Project>{0966CAB9-C1BC-47D4-9172-5CC3DF18A49A}</Project>
       <Name>RelativeStrengthCalculator</Name>

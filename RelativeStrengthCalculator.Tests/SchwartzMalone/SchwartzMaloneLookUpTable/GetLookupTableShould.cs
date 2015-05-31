@@ -6,7 +6,7 @@
 // <date>05/24/2015</date>
 // ---------------------------------
 
-namespace RelativeStrengthCalculator.SchwartzMalone.Tests.SchwartzMaloneLookUpTable
+namespace RelativeStrengthCalculator.Tests.SchwartzMalone.SchwartzMaloneLookUpTable
 {
     using System.Collections.Generic;
     using System.Linq;

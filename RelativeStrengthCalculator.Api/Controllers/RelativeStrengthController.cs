@@ -40,18 +40,18 @@ namespace RelativeStrengthCalculator.Api.Controllers
         [Route("{algorithm}/{units}/{sex}/{bodyWeight}")]
         public IHttpActionResult Get(CalculatorType algorithm, WeightUnit units, Sex sex, decimal bodyWeight)
         {
-            var calc = this._factory.Build(algorithm);
+            var calc = this._factory.Build(algorithm, units);
 
-            var result = new CoefficientDto { Coefficient = calc.Coefficient(units, sex, bodyWeight) };
+            var result = new CoefficientDto { Coefficient = calc.Coefficient(sex, bodyWeight) };
             return this.Ok(result);
         }
 
         [Route("{algorithm}/{units}/{sex}/{bodyWeight}/{weight}")]
         public IHttpActionResult Get(CalculatorType algorithm, WeightUnit units, Sex sex, decimal bodyWeight, decimal weight)
         {
-            var calc = this._factory.Build(algorithm);
+            var calc = this._factory.Build(algorithm, units);
 
-            var result = new ScoreDto { Coefficient = calc.Coefficient(units, sex, bodyWeight), Score = calc.AdjustedTotal(units, sex, bodyWeight, weight) };
+            var result = new ScoreDto { Coefficient = calc.Coefficient(sex, bodyWeight), Score = calc.AdjustedTotal(sex, bodyWeight, weight) };
 
             return this.Ok(result);
         }
