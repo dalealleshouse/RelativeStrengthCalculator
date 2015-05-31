@@ -12,7 +12,7 @@ namespace RelativeStrengthCalculator.SchwartzMalone
 
     using global::RelativeStrengthCalculator.WeightConverter;
 
-    public class SchwartzMaloneCalculator : RelativeStrengthCalculator
+    internal class SchwartzMaloneCalculator : RelativeStrengthCalculator
     {
         public SchwartzMaloneCalculator(IWeightConverterService weightConverterService, WeightUnit desiredWeightUnit)
             : base(weightConverterService, desiredWeightUnit)

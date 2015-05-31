@@ -64,15 +64,9 @@ namespace RelativeStrengthCalculator.Api.Tests.Controllers.RelativeStrengthContr
 
             public override CalculatorType CalculatorType => CalculatorType.Invalid;
 
-            public override decimal Coefficient(Sex sex, decimal bodyWeight)
-            {
-                return MockCoefficient;
-            }
+            public override decimal Coefficient(Sex sex, decimal bodyWeight) => MockCoefficient;
 
-            public override decimal AdjustedTotal(Sex sex, decimal bodyWeight, decimal total)
-            {
-                return MockTotal;
-            }
+            public override decimal AdjustedTotal(Sex sex, decimal bodyWeight, decimal total) => MockTotal;
         }
     }
 }

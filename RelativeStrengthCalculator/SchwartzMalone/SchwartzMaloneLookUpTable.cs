@@ -14,7 +14,7 @@ namespace RelativeStrengthCalculator.SchwartzMalone
 
     using global::RelativeStrengthCalculator.Properties;
 
-    public static class SchwartzMaloneLookUpTable
+    internal static class SchwartzMaloneLookUpTable
     {
         private static readonly Lazy<IReadOnlyDictionary<double, decimal>> Men = new Lazy<IReadOnlyDictionary<double, decimal>>(BuildMen);
 

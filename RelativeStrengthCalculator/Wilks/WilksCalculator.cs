@@ -12,7 +12,7 @@ namespace RelativeStrengthCalculator.Wilks
 
     using global::RelativeStrengthCalculator.WeightConverter;
 
-    public class WilksCalculator : RelativeStrengthCalculator
+    internal class WilksCalculator : RelativeStrengthCalculator
     {
         public WilksCalculator(IWeightConverterService weightConverterService, WeightUnit desiredWeightUnit)
             : base(weightConverterService, desiredWeightUnit)
