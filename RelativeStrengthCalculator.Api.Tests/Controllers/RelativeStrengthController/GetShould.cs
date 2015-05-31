@@ -10,6 +10,7 @@ namespace RelativeStrengthCalculator.Api.Tests.Controllers.RelativeStrengthContr
     using System.Web.Http.Results;
 
     using global::RelativeStrengthCalculator.Api.Controllers;
+    using global::RelativeStrengthCalculator.Api.Models;
     using global::RelativeStrengthCalculator.WeightConverter;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -32,7 +33,7 @@ namespace RelativeStrengthCalculator.Api.Tests.Controllers.RelativeStrengthContr
 
             var result = sut.Get(CalculatorType.Invalid, WeightUnit.Invalid, Sex.Invalid, 10m);
 
-            var typedResult = result as OkNegotiatedContentResult<RelativeStrengthController.CoefficientDto>;
+            var typedResult = result as OkNegotiatedContentResult<CoefficientDto>;
             Assert.IsNotNull(typedResult);
             Assert.AreEqual(MockCoefficient, typedResult.Content.Coefficient);
         }
@@ -47,7 +48,7 @@ namespace RelativeStrengthCalculator.Api.Tests.Controllers.RelativeStrengthContr
 
             var result = sut.Get(CalculatorType.Invalid, WeightUnit.Invalid, Sex.Invalid, 10m, 10m);
 
-            var typedResult = result as OkNegotiatedContentResult<RelativeStrengthController.ScoreDto>;
+            var typedResult = result as OkNegotiatedContentResult<ScoreDto>;
             Assert.IsNotNull(typedResult);
             Assert.AreEqual(MockCoefficient, typedResult.Content.Coefficient);
             Assert.AreEqual(MockTotal, typedResult.Content.Score);

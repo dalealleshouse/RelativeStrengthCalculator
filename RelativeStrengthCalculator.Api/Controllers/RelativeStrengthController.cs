@@ -11,9 +11,11 @@ namespace RelativeStrengthCalculator.Api.Controllers
     using System;
     using System.Web.Http;
     using System.Web.Http.Cors;
+    using System.Web.Http.Description;
 
     using Dea.Utilities.Reflection;
 
+    using global::RelativeStrengthCalculator.Api.Models;
     using global::RelativeStrengthCalculator.WeightConverter;
 
     /// <summary>
@@ -48,6 +50,7 @@ namespace RelativeStrengthCalculator.Api.Controllers
         /// <param name="sex"></param>
         /// <param name="bodyWeight"></param>
         /// <returns>Some data here</returns>
+        [ResponseType(typeof(CoefficientDto))]
         [Route("{algorithm}/{units}/{sex}/{bodyWeight}")]
         public IHttpActionResult Get(CalculatorType algorithm, WeightUnit units, Sex sex, decimal bodyWeight)
         {
@@ -66,6 +69,7 @@ namespace RelativeStrengthCalculator.Api.Controllers
         /// <param name="bodyWeight"></param>
         /// <param name="weight"></param>
         /// <returns></returns>
+        [ResponseType(typeof(ScoreDto))]
         [Route("{algorithm}/{units}/{sex}/{bodyWeight}/{weight}")]
         public IHttpActionResult Get(CalculatorType algorithm, WeightUnit units, Sex sex, decimal bodyWeight, decimal weight)
         {
@@ -76,17 +80,5 @@ namespace RelativeStrengthCalculator.Api.Controllers
             return this.Ok(result);
         }
 
-        internal class CoefficientDto
-        {
-            public decimal Coefficient { get; set; }
-        }
-
-        internal class ScoreDto
-        {
-            public decimal Coefficient { get; set; }
-
-            public decimal Score { get; set; }
-        }
     }
-
 }
