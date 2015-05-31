@@ -6,7 +6,7 @@
 // <date>05/30/2015</date>
 // ---------------------------------
 
-namespace RelativeStrengthCalculator.Api.Areas.HelpPage
+namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
 {
     using System;
     using System.Collections.Generic;
@@ -34,10 +34,10 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
         /// </summary>
         public HelpPageSampleGenerator()
         {
-            ActualHttpMessageTypes = new Dictionary<HelpPageSampleKey, Type>();
-            ActionSamples = new Dictionary<HelpPageSampleKey, object>();
-            SampleObjects = new Dictionary<Type, object>();
-            SampleObjectFactories = new List<Func<HelpPageSampleGenerator, Type, object>> { DefaultSampleObjectFactory };
+            this.ActualHttpMessageTypes = new Dictionary<HelpPageSampleKey, Type>();
+            this.ActionSamples = new Dictionary<HelpPageSampleKey, object>();
+            this.SampleObjects = new Dictionary<Type, object>();
+            this.SampleObjectFactories = new List<Func<HelpPageSampleGenerator, Type, object>> { DefaultSampleObjectFactory };
         }
 
         /// <summary>
@@ -71,14 +71,14 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
         /// </summary>
         /// <param name="api">The <see cref="ApiDescription"/>.</param>
         /// <returns>The samples keyed by media type.</returns>
-        public IDictionary<MediaTypeHeaderValue, object> GetSampleRequests(ApiDescription api) => GetSample(api, SampleDirection.Request);
+        public IDictionary<MediaTypeHeaderValue, object> GetSampleRequests(ApiDescription api) => this.GetSample(api, SampleDirection.Request);
 
         /// <summary>
         /// Gets the response body samples for a given <see cref="ApiDescription"/>.
         /// </summary>
         /// <param name="api">The <see cref="ApiDescription"/>.</param>
         /// <returns>The samples keyed by media type.</returns>
-        public IDictionary<MediaTypeHeaderValue, object> GetSampleResponses(ApiDescription api) => GetSample(api, SampleDirection.Response);
+        public IDictionary<MediaTypeHeaderValue, object> GetSampleResponses(ApiDescription api) => this.GetSample(api, SampleDirection.Response);
 
         /// <summary>
         /// Gets the request or response body samples.
@@ -96,11 +96,11 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
             string actionName = api.ActionDescriptor.ActionName;
             IEnumerable<string> parameterNames = api.ParameterDescriptions.Select(p => p.Name);
             Collection<MediaTypeFormatter> formatters;
-            Type type = ResolveType(api, controllerName, actionName, parameterNames, sampleDirection, out formatters);
+            Type type = this.ResolveType(api, controllerName, actionName, parameterNames, sampleDirection, out formatters);
             var samples = new Dictionary<MediaTypeHeaderValue, object>();
 
             // Use the samples provided directly for actions
-            var actionSamples = GetAllActionSamples(controllerName, actionName, parameterNames, sampleDirection);
+            var actionSamples = this.GetAllActionSamples(controllerName, actionName, parameterNames, sampleDirection);
             foreach (var actionSample in actionSamples)
             {
                 samples.Add(actionSample.Key.MediaType, WrapSampleIfString(actionSample.Value));
@@ -110,19 +110,19 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
             // Here we cannot rely on formatters because we don't know what's in the HttpResponseMessage, it might not even use formatters.
             if (type != null && !typeof(HttpResponseMessage).IsAssignableFrom(type))
             {
-                object sampleObject = GetSampleObject(type);
+                object sampleObject = this.GetSampleObject(type);
                 foreach (var formatter in formatters)
                 {
                     foreach (MediaTypeHeaderValue mediaType in formatter.SupportedMediaTypes)
                     {
                         if (!samples.ContainsKey(mediaType))
                         {
-                            object sample = GetActionSample(controllerName, actionName, parameterNames, type, formatter, mediaType, sampleDirection);
+                            object sample = this.GetActionSample(controllerName, actionName, parameterNames, type, formatter, mediaType, sampleDirection);
 
                             // If no sample found, try generate sample using formatter and sample object
                             if (sample == null && sampleObject != null)
                             {
-                                sample = WriteSampleObjectUsingFormatter(formatter, sampleObject, type, mediaType);
+                                sample = this.WriteSampleObjectUsingFormatter(formatter, sampleObject, type, mediaType);
                             }
 
                             samples.Add(mediaType, WrapSampleIfString(sample));
@@ -160,10 +160,10 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
             // If not found, try to get the sample provided for the specified mediaType, sampleDirection, controllerName and actionName regardless of the parameterNames.
             // If still not found, try to get the sample provided for the specified mediaType and type.
             // Finally, try to get the sample provided for the specified mediaType.
-            if (ActionSamples.TryGetValue(new HelpPageSampleKey(mediaType, sampleDirection, controllerName, actionName, parameterNames), out sample)
-                || ActionSamples.TryGetValue(new HelpPageSampleKey(mediaType, sampleDirection, controllerName, actionName, new[] { "*" }), out sample)
-                || ActionSamples.TryGetValue(new HelpPageSampleKey(mediaType, type), out sample)
-                || ActionSamples.TryGetValue(new HelpPageSampleKey(mediaType), out sample))
+            if (this.ActionSamples.TryGetValue(new HelpPageSampleKey(mediaType, sampleDirection, controllerName, actionName, parameterNames), out sample)
+                || this.ActionSamples.TryGetValue(new HelpPageSampleKey(mediaType, sampleDirection, controllerName, actionName, new[] { "*" }), out sample)
+                || this.ActionSamples.TryGetValue(new HelpPageSampleKey(mediaType, type), out sample)
+                || this.ActionSamples.TryGetValue(new HelpPageSampleKey(mediaType), out sample))
             {
                 return sample;
             }
@@ -185,10 +185,10 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
         {
             object sampleObject;
 
-            if (!SampleObjects.TryGetValue(type, out sampleObject))
+            if (!this.SampleObjects.TryGetValue(type, out sampleObject))
             {
                 // No specific object available, try our factories.
-                foreach (Func<HelpPageSampleGenerator, Type, object> factory in SampleObjectFactories)
+                foreach (Func<HelpPageSampleGenerator, Type, object> factory in this.SampleObjectFactories)
                 {
                     if (factory == null)
                     {
@@ -224,7 +224,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
             string actionName = api.ActionDescriptor.ActionName;
             IEnumerable<string> parameterNames = api.ParameterDescriptions.Select(p => p.Name);
             Collection<MediaTypeFormatter> formatters;
-            return ResolveType(api, controllerName, actionName, parameterNames, SampleDirection.Request, out formatters);
+            return this.ResolveType(api, controllerName, actionName, parameterNames, SampleDirection.Request, out formatters);
         }
 
         /// <summary>
@@ -254,8 +254,8 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
                 throw new ArgumentNullException(nameof(api));
             }
             Type type;
-            if (ActualHttpMessageTypes.TryGetValue(new HelpPageSampleKey(sampleDirection, controllerName, actionName, parameterNames), out type)
-                || ActualHttpMessageTypes.TryGetValue(new HelpPageSampleKey(sampleDirection, controllerName, actionName, new[] { "*" }), out type))
+            if (this.ActualHttpMessageTypes.TryGetValue(new HelpPageSampleKey(sampleDirection, controllerName, actionName, parameterNames), out type)
+                || this.ActualHttpMessageTypes.TryGetValue(new HelpPageSampleKey(sampleDirection, controllerName, actionName, new[] { "*" }), out type))
             {
                 // Re-compute the supported formatters based on type
                 Collection<MediaTypeFormatter> newFormatters = new Collection<MediaTypeFormatter>();
@@ -437,7 +437,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
             SampleDirection sampleDirection)
         {
             HashSet<string> parameterNamesSet = new HashSet<string>(parameterNames, StringComparer.OrdinalIgnoreCase);
-            foreach (var sample in ActionSamples)
+            foreach (var sample in this.ActionSamples)
             {
                 HelpPageSampleKey sampleKey = sample.Key;
                 if (String.Equals(controllerName, sampleKey.ControllerName, StringComparison.OrdinalIgnoreCase)

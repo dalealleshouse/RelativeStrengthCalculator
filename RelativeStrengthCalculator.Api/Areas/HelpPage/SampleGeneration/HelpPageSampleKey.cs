@@ -6,7 +6,7 @@
 // <date>05/30/2015</date>
 // ---------------------------------
 
-namespace RelativeStrengthCalculator.Api.Areas.HelpPage
+namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
 {
     using System;
     using System.Collections.Generic;
@@ -29,10 +29,10 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
                 throw new ArgumentNullException(nameof(mediaType));
             }
 
-            ActionName = String.Empty;
-            ControllerName = String.Empty;
-            MediaType = mediaType;
-            ParameterNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            this.ActionName = String.Empty;
+            this.ControllerName = String.Empty;
+            this.MediaType = mediaType;
+            this.ParameterNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
                 throw new ArgumentNullException(nameof(type));
             }
 
-            ParameterType = type;
+            this.ParameterType = type;
         }
 
         /// <summary>
@@ -77,10 +77,10 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
                 throw new ArgumentNullException(nameof(parameterNames));
             }
 
-            ControllerName = controllerName;
-            ActionName = actionName;
-            ParameterNames = new HashSet<string>(parameterNames, StringComparer.OrdinalIgnoreCase);
-            SampleDirection = sampleDirection;
+            this.ControllerName = controllerName;
+            this.ActionName = actionName;
+            this.ParameterNames = new HashSet<string>(parameterNames, StringComparer.OrdinalIgnoreCase);
+            this.SampleDirection = sampleDirection;
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
                 throw new ArgumentNullException(nameof(mediaType));
             }
 
-            MediaType = mediaType;
+            this.MediaType = mediaType;
         }
 
         /// <summary>
@@ -151,28 +151,28 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
                 return false;
             }
 
-            return String.Equals(ControllerName, otherKey.ControllerName, StringComparison.OrdinalIgnoreCase)
-                   && String.Equals(ActionName, otherKey.ActionName, StringComparison.OrdinalIgnoreCase)
-                   && (MediaType == otherKey.MediaType || (MediaType != null && MediaType.Equals(otherKey.MediaType))) && ParameterType == otherKey.ParameterType
-                   && SampleDirection == otherKey.SampleDirection && ParameterNames.SetEquals(otherKey.ParameterNames);
+            return String.Equals(this.ControllerName, otherKey.ControllerName, StringComparison.OrdinalIgnoreCase)
+                   && String.Equals(this.ActionName, otherKey.ActionName, StringComparison.OrdinalIgnoreCase)
+                   && (this.MediaType == otherKey.MediaType || (this.MediaType != null && this.MediaType.Equals(otherKey.MediaType))) && this.ParameterType == otherKey.ParameterType
+                   && this.SampleDirection == otherKey.SampleDirection && this.ParameterNames.SetEquals(otherKey.ParameterNames);
         }
 
         public override int GetHashCode()
         {
-            int hashCode = ControllerName.ToUpperInvariant().GetHashCode() ^ ActionName.ToUpperInvariant().GetHashCode();
-            if (MediaType != null)
+            int hashCode = this.ControllerName.ToUpperInvariant().GetHashCode() ^ this.ActionName.ToUpperInvariant().GetHashCode();
+            if (this.MediaType != null)
             {
-                hashCode ^= MediaType.GetHashCode();
+                hashCode ^= this.MediaType.GetHashCode();
             }
-            if (SampleDirection != null)
+            if (this.SampleDirection != null)
             {
-                hashCode ^= SampleDirection.GetHashCode();
+                hashCode ^= this.SampleDirection.GetHashCode();
             }
-            if (ParameterType != null)
+            if (this.ParameterType != null)
             {
-                hashCode ^= ParameterType.GetHashCode();
+                hashCode ^= this.ParameterType.GetHashCode();
             }
-            foreach (string parameterName in ParameterNames)
+            foreach (string parameterName in this.ParameterNames)
             {
                 hashCode ^= parameterName.ToUpperInvariant().GetHashCode();
             }

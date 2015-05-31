@@ -11,12 +11,14 @@
 using System.Web.Http.OData;
 #endif
 
-namespace RelativeStrengthCalculator.Api.Areas.HelpPage
+namespace RelativeStrengthCalculator.Api.Areas.HelpPage.App_Start
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http.Headers;
     using System.Web;
     using System.Web.Http;
+
+    using global::RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration;
 
     /// <summary>
     /// Use this class to customize the Help Page.

@@ -3,6 +3,8 @@ using System.Web.Mvc;
 
 namespace RelativeStrengthCalculator.Api.Areas.HelpPage
 {
+    using global::RelativeStrengthCalculator.Api.Areas.HelpPage.App_Start;
+
     public class HelpPageAreaRegistration : AreaRegistration
     {
         public override string AreaName => "HelpPage";

@@ -6,7 +6,7 @@
 // <date>05/30/2015</date>
 // ---------------------------------
 
-namespace RelativeStrengthCalculator.Api.Areas.HelpPage
+namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
 {
     using System;
 
@@ -25,7 +25,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
             {
                 throw new ArgumentNullException(nameof(src));
             }
-            Src = src;
+            this.Src = src;
         }
 
         public string Src { get; }
@@ -33,11 +33,11 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
         public override bool Equals(object obj)
         {
             ImageSample other = obj as ImageSample;
-            return other != null && Src == other.Src;
+            return other != null && this.Src == other.Src;
         }
 
-        public override int GetHashCode() => Src.GetHashCode();
+        public override int GetHashCode() => this.Src.GetHashCode();
 
-        public override string ToString() => Src;
+        public override string ToString() => this.Src;
     }
 }

@@ -16,6 +16,8 @@ using RelativeStrengthCalculator.Api.Areas.HelpPage.Models;
 
 namespace RelativeStrengthCalculator.Api.Areas.HelpPage
 {
+    using global::RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration;
+
     public static class HelpPageConfigurationExtensions
     {
         private const string ApiModelPrefix = "MS_HelpPageApiModel_";

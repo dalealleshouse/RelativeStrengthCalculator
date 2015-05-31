@@ -6,7 +6,7 @@
 // <date>05/30/2015</date>
 // ---------------------------------
 
-namespace RelativeStrengthCalculator.Api.Areas.HelpPage
+namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
 {
     using System;
 
@@ -21,7 +21,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
             {
                 throw new ArgumentNullException(nameof(text));
             }
-            Text = text;
+            this.Text = text;
         }
 
         public string Text { get; }
@@ -29,11 +29,11 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
         public override bool Equals(object obj)
         {
             TextSample other = obj as TextSample;
-            return other != null && Text == other.Text;
+            return other != null && this.Text == other.Text;
         }
 
-        public override int GetHashCode() => Text.GetHashCode();
+        public override int GetHashCode() => this.Text.GetHashCode();
 
-        public override string ToString() => Text;
+        public override string ToString() => this.Text;
     }
 }

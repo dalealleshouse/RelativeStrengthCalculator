@@ -6,7 +6,7 @@
 // <date>05/30/2015</date>
 // ---------------------------------
 
-namespace RelativeStrengthCalculator.Api.Areas.HelpPage
+namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
 {
     using System;
     using System.Collections;
@@ -39,7 +39,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>An object of the given type.</returns>
-        public object GenerateObject(Type type) => GenerateObject(type, new Dictionary<Type, object>());
+        public object GenerateObject(Type type) => this.GenerateObject(type, new Dictionary<Type, object>());
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Here we just want to return null if anything goes wrong.")]
         private object GenerateObject(Type type, Dictionary<Type, object> createdObjectReferences)
@@ -48,7 +48,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
             {
                 if (SimpleTypeObjectGenerator.CanGenerateObject(type))
                 {
-                    return SimpleObjectGenerator.GenerateObject(type);
+                    return this.SimpleObjectGenerator.GenerateObject(type);
                 }
 
                 if (type.IsArray)
@@ -435,7 +435,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
 
             public static bool CanGenerateObject(Type type) => DefaultGenerators.ContainsKey(type);
 
-            public object GenerateObject(Type type) => DefaultGenerators[type](++_index);
+            public object GenerateObject(Type type) => DefaultGenerators[type](++this._index);
         }
     }
 }
