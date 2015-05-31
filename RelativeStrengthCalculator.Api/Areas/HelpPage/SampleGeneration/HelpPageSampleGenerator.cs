@@ -92,6 +92,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
             {
                 throw new ArgumentNullException(nameof(api));
             }
+
             string controllerName = api.ActionDescriptor.ControllerDescriptor.ControllerName;
             string actionName = api.ActionDescriptor.ActionName;
             IEnumerable<string> parameterNames = api.ParameterDescriptions.Select(p => p.Name);
@@ -172,7 +173,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
         }
 
         /// <summary>
-        /// Gets the sample object that will be serialized by the formatters. 
+        /// Gets the sample object that will be serialized by the formatters.
         /// First, it will look at the <see cref="SampleObjects"/>. If no sample object is found, it will try to create
         /// one using <see cref="DefaultSampleObjectFactory"/> (which wraps an <see cref="ObjectGenerator"/>) and other
         /// factories in <see cref="SampleObjectFactories"/>.
@@ -249,10 +250,12 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
             {
                 throw new InvalidEnumArgumentException(nameof(sampleDirection), (int)sampleDirection, typeof(SampleDirection));
             }
+
             if (api == null)
             {
                 throw new ArgumentNullException(nameof(api));
             }
+
             Type type;
             if (this.ActualHttpMessageTypes.TryGetValue(new HelpPageSampleKey(sampleDirection, controllerName, actionName, parameterNames), out type)
                 || this.ActualHttpMessageTypes.TryGetValue(new HelpPageSampleKey(sampleDirection, controllerName, actionName, new[] { "*" }), out type))
@@ -266,6 +269,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
                         newFormatters.Add(formatter);
                     }
                 }
+
                 formatters = newFormatters;
             }
             else
@@ -303,12 +307,13 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
             {
                 throw new ArgumentNullException(nameof(formatter));
             }
+
             if (mediaType == null)
             {
                 throw new ArgumentNullException(nameof(mediaType));
             }
 
-            object sample = String.Empty;
+            object sample = string.Empty;
             MemoryStream ms = null;
             HttpContent content = null;
             try
@@ -336,7 +341,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
                 {
                     sample =
                         new InvalidSample(
-                            String.Format(
+                            string.Format(
                                 CultureInfo.CurrentCulture,
                                 "Failed to generate the sample for media type '{0}'. Cannot use formatter '{1}' to write type '{2}'.",
                                 mediaType,
@@ -348,7 +353,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
             {
                 sample =
                     new InvalidSample(
-                        String.Format(
+                        string.Format(
                             CultureInfo.CurrentCulture,
                             "An exception has occurred while using the formatter '{0}' to generate sample for media type '{1}'. Exception message: {2}",
                             formatter.GetType().Name,
@@ -361,6 +366,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
                 {
                     ms.Dispose();
                 }
+
                 if (content != null)
                 {
                     content.Dispose();
@@ -377,6 +383,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
             {
                 return aggregateException.Flatten().InnerException;
             }
+
             return exception;
         }
 
@@ -427,6 +434,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
                 case SampleDirection.Response:
                     return formatter.CanWriteType(type);
             }
+
             return false;
         }
 
@@ -440,8 +448,8 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
             foreach (var sample in this.ActionSamples)
             {
                 HelpPageSampleKey sampleKey = sample.Key;
-                if (String.Equals(controllerName, sampleKey.ControllerName, StringComparison.OrdinalIgnoreCase)
-                    && String.Equals(actionName, sampleKey.ActionName, StringComparison.OrdinalIgnoreCase)
+                if (string.Equals(controllerName, sampleKey.ControllerName, StringComparison.OrdinalIgnoreCase)
+                    && string.Equals(actionName, sampleKey.ActionName, StringComparison.OrdinalIgnoreCase)
                     && (sampleKey.ParameterNames.SetEquals(new[] { "*" }) || parameterNamesSet.SetEquals(sampleKey.ParameterNames))
                     && sampleDirection == sampleKey.SampleDirection)
                 {

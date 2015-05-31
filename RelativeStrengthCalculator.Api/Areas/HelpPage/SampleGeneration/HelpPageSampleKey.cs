@@ -6,6 +6,7 @@
 // <date>05/30/2015</date>
 // ---------------------------------
 
+#pragma warning disable 1591
 namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
 {
     using System;
@@ -29,8 +30,8 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
                 throw new ArgumentNullException(nameof(mediaType));
             }
 
-            this.ActionName = String.Empty;
-            this.ControllerName = String.Empty;
+            this.ActionName = string.Empty;
+            this.ControllerName = string.Empty;
             this.MediaType = mediaType;
             this.ParameterNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         }
@@ -64,14 +65,17 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
             {
                 throw new InvalidEnumArgumentException(nameof(sampleDirection), (int)sampleDirection, typeof(SampleDirection));
             }
+
             if (controllerName == null)
             {
                 throw new ArgumentNullException(nameof(controllerName));
             }
+
             if (actionName == null)
             {
                 throw new ArgumentNullException(nameof(actionName));
             }
+
             if (parameterNames == null)
             {
                 throw new ArgumentNullException(nameof(parameterNames));
@@ -151,8 +155,8 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
                 return false;
             }
 
-            return String.Equals(this.ControllerName, otherKey.ControllerName, StringComparison.OrdinalIgnoreCase)
-                   && String.Equals(this.ActionName, otherKey.ActionName, StringComparison.OrdinalIgnoreCase)
+            return string.Equals(this.ControllerName, otherKey.ControllerName, StringComparison.OrdinalIgnoreCase)
+                   && string.Equals(this.ActionName, otherKey.ActionName, StringComparison.OrdinalIgnoreCase)
                    && (this.MediaType == otherKey.MediaType || (this.MediaType != null && this.MediaType.Equals(otherKey.MediaType))) && this.ParameterType == otherKey.ParameterType
                    && this.SampleDirection == otherKey.SampleDirection && this.ParameterNames.SetEquals(otherKey.ParameterNames);
         }
@@ -164,14 +168,17 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
             {
                 hashCode ^= this.MediaType.GetHashCode();
             }
+
             if (this.SampleDirection != null)
             {
                 hashCode ^= this.SampleDirection.GetHashCode();
             }
+
             if (this.ParameterType != null)
             {
                 hashCode ^= this.ParameterType.GetHashCode();
             }
+
             foreach (string parameterName in this.ParameterNames)
             {
                 hashCode ^= parameterName.ToUpperInvariant().GetHashCode();

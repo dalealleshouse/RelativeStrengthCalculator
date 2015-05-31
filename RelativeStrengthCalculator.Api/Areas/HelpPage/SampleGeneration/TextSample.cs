@@ -6,6 +6,7 @@
 // <date>05/30/2015</date>
 // ---------------------------------
 
+#pragma warning disable 1591
 namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
 {
     using System;
@@ -21,6 +22,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
             {
                 throw new ArgumentNullException(nameof(text));
             }
+
             this.Text = text;
         }
 

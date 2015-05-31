@@ -316,7 +316,7 @@
         </member>
         <member name="M:RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration.HelpPageSampleGenerator.GetSampleObject(System.Type)">
             <summary>
-            Gets the sample object that will be serialized by the formatters. 
+            Gets the sample object that will be serialized by the formatters.
             First, it will look at the <see cref="P:RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
             one using <see cref="M:RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration.HelpPageSampleGenerator.DefaultSampleObjectFactory(RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration.ObjectGenerator"/>) and other
             factories in <see cref="P:RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration.HelpPageSampleGenerator.SampleObjectFactories"/>.
@@ -481,31 +481,77 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:RelativeStrengthCalculator.Api.Models.ScoreDto">
+            <summary>
+            Data transfer object for coefficients and scores
+            </summary>
+        </member>
+        <member name="P:RelativeStrengthCalculator.Api.Models.ScoreDto.Score">
+            <summary>
+            Calculated relative strength score
+            </summary>
+        </member>
+        <member name="T:RelativeStrengthCalculator.Api.Models.CoefficientDto">
+            <summary>
+            Data transfer object for coefficient calculations
+            </summary>
+        </member>
+        <member name="P:RelativeStrengthCalculator.Api.Models.CoefficientDto.Coefficient">
+            <summary>
+            Calculated coefficient value
+            </summary>
+        </member>
         <member name="T:RelativeStrengthCalculator.Api.Controllers.RelativeStrengthController">
             <summary>
             Provides relative strength calculations
             </summary>
         </member>
+        <member name="M:RelativeStrengthCalculator.Api.Controllers.RelativeStrengthController.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:RelativeStrengthCalculator.Api.Controllers.RelativeStrengthController"/> with default implementation of constructor parameters
+            </summary>
+        </member>
+        <member name="M:RelativeStrengthCalculator.Api.Controllers.RelativeStrengthController.#ctor(RelativeStrengthCalculator.IRelativeStrengthCalculatorFactory)">
+            <summary>
+            Creates an instance of <see cref="T:RelativeStrengthCalculator.Api.Controllers.RelativeStrengthController"/>
+            </summary>
+            <param name="factory"><see cref="T:RelativeStrengthCalculator.IRelativeStrengthCalculatorFactory"/> responsible for generating <see cref="T:RelativeStrengthCalculator.RelativeStrengthCalculator"/> implementations</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
         <member name="M:RelativeStrengthCalculator.Api.Controllers.RelativeStrengthController.Get(RelativeStrengthCalculator.CalculatorType,RelativeStrengthCalculator.WeightUnit,RelativeStrengthCalculator.Sex,System.Decimal)">
             <summary>
-            bar
+            Calculates the coefficient given the specified parameters.<br />
+            <b>Note:</b> If the bodyWeight parameter has a decimal point, the request needs to end with a <mark>/</mark><br />
+            <example>
+            <div class="well">
+            <a target="_blank" href="http://relativestrengthcalculatorapi.azurewebsites.net/1/1/1/100.25">http://relativestrengthcalculatorapi.azurewebsites.net/1/1/1/100.25</a> - This will result in a bad request error.<br />
+            <a target="_blank" href="http://relativestrengthcalculatorapi.azurewebsites.net/1/1/1/100.25/">http://relativestrengthcalculatorapi.azurewebsites.net/1/1/1/100.25<mark>/</mark></a> - This is valid.
+            </div>
+            </example>
             </summary>
-            <param name="algorithm"></param>
-            <param name="units"></param>
-            <param name="sex"></param>
-            <param name="bodyWeight"></param>
-            <returns>Some data here</returns>
+            <param name="algorithm">CalculatorType indicating which algorithm to use for relative strength calculations</param>
+            <param name="units">WeightUnit indicating the unit that the bodyWeight parameter will be in</param>
+            <param name="sex">Sex indicating the sex to use in the relative strength calculation</param>
+            <param name="bodyWeight">Body weight to use in the coefficient calculation</param>
+            <returns>CoefficientDto containing the calculated coefficient</returns>
         </member>
         <member name="M:RelativeStrengthCalculator.Api.Controllers.RelativeStrengthController.Get(RelativeStrengthCalculator.CalculatorType,RelativeStrengthCalculator.WeightUnit,RelativeStrengthCalculator.Sex,System.Decimal,System.Decimal)">
             <summary>
-            
+            Calculates the coefficient and score given the specified parameters.<br />
+            <b>Note:</b> If the weight parameter has a decimal point, the request needs to end with a <mark>/</mark><br />
+            <example>
+            <div class="well">
+            <a target="_blank" href="http://relativestrengthcalculatorapi.azurewebsites.net/1/1/1/100/200.25">http://relativestrengthcalculatorapi.azurewebsites.net/1/1/1/100/200.25</a> - This will result in a bad request error.<br />
+            <a target="_blank" href="http://relativestrengthcalculatorapi.azurewebsites.net/1/1/1/100/200.25/">http://relativestrengthcalculatorapi.azurewebsites.net/1/1/1/100/200.25<mark>/</mark></a> - This is valid.
+            </div>
+            </example>
             </summary>
-            <param name="algorithm"></param>
-            <param name="units"></param>
-            <param name="sex"></param>
-            <param name="bodyWeight"></param>
-            <param name="weight"></param>
-            <returns></returns>
+            <param name="algorithm">CalculatorType indicating which algorithm to use for relative strength calculations</param>
+            <param name="units">WeightUnit indicating the unit that the weight and bodyWeight parameters will be in</param>
+            <param name="sex">Sex indicating the sex to use in the relative strength calculation</param>
+            <param name="bodyWeight">Body weight to use in the coefficient calculation</param>
+            <param name="weight">Weight to use in the score calculation</param>
+            <returns>ScoreDto containing the calculated coefficient and score</returns>
         </member>
     </members>
 </doc>

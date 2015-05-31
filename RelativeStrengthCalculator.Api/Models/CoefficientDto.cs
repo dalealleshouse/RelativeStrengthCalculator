@@ -8,8 +8,14 @@
 
 namespace RelativeStrengthCalculator.Api.Models
 {
+    /// <summary>
+    /// Data transfer object for coefficient calculations
+    /// </summary>
     public class CoefficientDto
     {
+        /// <summary>
+        /// Calculated coefficient value
+        /// </summary>
         public decimal Coefficient { get; set; }
     }
 }

@@ -6,6 +6,7 @@
 // <date>05/30/2015</date>
 // ---------------------------------
 
+#pragma warning disable 1591
 namespace RelativeStrengthCalculator.Api.Areas.HelpPage.ModelDescriptions
 {
     using System.Collections.ObjectModel;
@@ -14,7 +15,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.ModelDescriptions
     {
         public ParameterDescription()
         {
-            Annotations = new Collection<ParameterAnnotation>();
+            this.Annotations = new Collection<ParameterAnnotation>();
         }
 
         public Collection<ParameterAnnotation> Annotations { get; }

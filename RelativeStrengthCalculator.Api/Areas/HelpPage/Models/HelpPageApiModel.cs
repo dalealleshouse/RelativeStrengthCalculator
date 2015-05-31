@@ -1,11 +1,20 @@
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Net.Http.Headers;
-using System.Web.Http.Description;
-using RelativeStrengthCalculator.Api.Areas.HelpPage.ModelDescriptions;
+// --------------------------------
+// <copyright file="HelpPageApiModel.cs">
+// Copyright (c) 2015 All rights reserved.
+// </copyright>
+// <author>dallesho</author>
+// <date>05/30/2015</date>
+// ---------------------------------
 
 namespace RelativeStrengthCalculator.Api.Areas.HelpPage.Models
 {
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Net.Http.Headers;
+    using System.Web.Http.Description;
+
+    using global::RelativeStrengthCalculator.Api.Areas.HelpPage.ModelDescriptions;
+
     /// <summary>
     /// The model that represents an API displayed on the help page.
     /// </summary>
@@ -16,10 +25,10 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.Models
         /// </summary>
         public HelpPageApiModel()
         {
-            UriParameters = new Collection<ParameterDescription>();
-            SampleRequests = new Dictionary<MediaTypeHeaderValue, object>();
-            SampleResponses = new Dictionary<MediaTypeHeaderValue, object>();
-            ErrorMessages = new Collection<string>();
+            this.UriParameters = new Collection<ParameterDescription>();
+            this.SampleRequests = new Dictionary<MediaTypeHeaderValue, object>();
+            this.SampleResponses = new Dictionary<MediaTypeHeaderValue, object>();
+            this.ErrorMessages = new Collection<string>();
         }
 
         /// <summary>

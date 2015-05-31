@@ -1,11 +1,20 @@
-using System;
-using System.Web.Http;
-using System.Web.Mvc;
-using RelativeStrengthCalculator.Api.Areas.HelpPage.ModelDescriptions;
-using RelativeStrengthCalculator.Api.Areas.HelpPage.Models;
+// --------------------------------
+// <copyright file="HelpController.cs">
+// Copyright (c) 2015 All rights reserved.
+// </copyright>
+// <author>dallesho</author>
+// <date>05/30/2015</date>
+// ---------------------------------
 
+#pragma warning disable 1591
 namespace RelativeStrengthCalculator.Api.Areas.HelpPage.Controllers
 {
+    using System.Web.Http;
+    using System.Web.Mvc;
+
+    using global::RelativeStrengthCalculator.Api.Areas.HelpPage.ModelDescriptions;
+    using global::RelativeStrengthCalculator.Api.Areas.HelpPage.Models;
+
     /// <summary>
     /// The controller that will handle requests for the help page.
     /// </summary>
@@ -20,44 +29,44 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.Controllers
 
         public HelpController(HttpConfiguration config)
         {
-            Configuration = config;
+            this.Configuration = config;
         }
 
         public HttpConfiguration Configuration { get; }
 
         public ActionResult Index()
         {
-            ViewBag.DocumentationProvider = Configuration.Services.GetDocumentationProvider();
-            return View(Configuration.Services.GetApiExplorer().ApiDescriptions);
+            this.ViewBag.DocumentationProvider = this.Configuration.Services.GetDocumentationProvider();
+            return this.View(this.Configuration.Services.GetApiExplorer().ApiDescriptions);
         }
 
         public ActionResult Api(string apiId)
         {
-            if (!String.IsNullOrEmpty(apiId))
+            if (!string.IsNullOrEmpty(apiId))
             {
-                HelpPageApiModel apiModel = Configuration.GetHelpPageApiModel(apiId);
+                HelpPageApiModel apiModel = this.Configuration.GetHelpPageApiModel(apiId);
                 if (apiModel != null)
                 {
-                    return View(apiModel);
+                    return this.View(apiModel);
                 }
             }
 
-            return View(ErrorViewName);
+            return this.View(ErrorViewName);
         }
 
         public ActionResult ResourceModel(string modelName)
         {
-            if (!String.IsNullOrEmpty(modelName))
+            if (!string.IsNullOrEmpty(modelName))
             {
-                ModelDescriptionGenerator modelDescriptionGenerator = Configuration.GetModelDescriptionGenerator();
+                ModelDescriptionGenerator modelDescriptionGenerator = this.Configuration.GetModelDescriptionGenerator();
                 ModelDescription modelDescription;
                 if (modelDescriptionGenerator.GeneratedModels.TryGetValue(modelName, out modelDescription))
                 {
-                    return View(modelDescription);
+                    return this.View(modelDescription);
                 }
             }
 
-            return View(ErrorViewName);
+            return this.View(ErrorViewName);
         }
     }
 }

@@ -6,6 +6,7 @@
 // <date>05/30/2015</date>
 // ---------------------------------
 
+#pragma warning disable 1591
 namespace RelativeStrengthCalculator.Api
 {
     using System.Web;

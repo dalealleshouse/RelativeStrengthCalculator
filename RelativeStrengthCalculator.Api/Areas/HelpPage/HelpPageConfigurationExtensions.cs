@@ -1,21 +1,30 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Web.Http;
-using System.Web.Http.Controllers;
-using System.Web.Http.Description;
-using RelativeStrengthCalculator.Api.Areas.HelpPage.ModelDescriptions;
-using RelativeStrengthCalculator.Api.Areas.HelpPage.Models;
+// --------------------------------
+// <copyright file="HelpPageConfigurationExtensions.cs">
+// Copyright (c) 2015 All rights reserved.
+// </copyright>
+// <author>dallesho</author>
+// <date>05/30/2015</date>
+// ---------------------------------
 
+#pragma warning disable 1591
 namespace RelativeStrengthCalculator.Api.Areas.HelpPage
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Web.Http;
+    using System.Web.Http.Controllers;
+    using System.Web.Http.Description;
+
+    using global::RelativeStrengthCalculator.Api.Areas.HelpPage.ModelDescriptions;
+    using global::RelativeStrengthCalculator.Api.Areas.HelpPage.Models;
     using global::RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration;
 
     public static class HelpPageConfigurationExtensions
@@ -52,7 +61,8 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
         /// <param name="actionName">Name of the action.</param>
         public static void SetSampleRequest(this HttpConfiguration config, object sample, MediaTypeHeaderValue mediaType, string controllerName, string actionName)
         {
-            config.GetHelpPageSampleGenerator().ActionSamples.Add(new HelpPageSampleKey(mediaType, SampleDirection.Request, controllerName, actionName, new[] { "*" }), sample);
+            config.GetHelpPageSampleGenerator()
+                .ActionSamples.Add(new HelpPageSampleKey(mediaType, SampleDirection.Request, controllerName, actionName, new[] { "*" }), sample);
         }
 
         /// <summary>
@@ -64,9 +74,16 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
         /// <param name="parameterNames">The parameter names.</param>
-        public static void SetSampleRequest(this HttpConfiguration config, object sample, MediaTypeHeaderValue mediaType, string controllerName, string actionName, params string[] parameterNames)
+        public static void SetSampleRequest(
+            this HttpConfiguration config,
+            object sample,
+            MediaTypeHeaderValue mediaType,
+            string controllerName,
+            string actionName,
+            params string[] parameterNames)
         {
-            config.GetHelpPageSampleGenerator().ActionSamples.Add(new HelpPageSampleKey(mediaType, SampleDirection.Request, controllerName, actionName, parameterNames), sample);
+            config.GetHelpPageSampleGenerator()
+                .ActionSamples.Add(new HelpPageSampleKey(mediaType, SampleDirection.Request, controllerName, actionName, parameterNames), sample);
         }
 
         /// <summary>
@@ -79,7 +96,8 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
         /// <param name="actionName">Name of the action.</param>
         public static void SetSampleResponse(this HttpConfiguration config, object sample, MediaTypeHeaderValue mediaType, string controllerName, string actionName)
         {
-            config.GetHelpPageSampleGenerator().ActionSamples.Add(new HelpPageSampleKey(mediaType, SampleDirection.Response, controllerName, actionName, new[] { "*" }), sample);
+            config.GetHelpPageSampleGenerator()
+                .ActionSamples.Add(new HelpPageSampleKey(mediaType, SampleDirection.Response, controllerName, actionName, new[] { "*" }), sample);
         }
 
         /// <summary>
@@ -91,9 +109,16 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
         /// <param name="parameterNames">The parameter names.</param>
-        public static void SetSampleResponse(this HttpConfiguration config, object sample, MediaTypeHeaderValue mediaType, string controllerName, string actionName, params string[] parameterNames)
+        public static void SetSampleResponse(
+            this HttpConfiguration config,
+            object sample,
+            MediaTypeHeaderValue mediaType,
+            string controllerName,
+            string actionName,
+            params string[] parameterNames)
         {
-            config.GetHelpPageSampleGenerator().ActionSamples.Add(new HelpPageSampleKey(mediaType, SampleDirection.Response, controllerName, actionName, parameterNames), sample);
+            config.GetHelpPageSampleGenerator()
+                .ActionSamples.Add(new HelpPageSampleKey(mediaType, SampleDirection.Response, controllerName, actionName, parameterNames), sample);
         }
 
         /// <summary>
@@ -129,7 +154,8 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
         /// <param name="actionName">Name of the action.</param>
         public static void SetActualRequestType(this HttpConfiguration config, Type type, string controllerName, string actionName)
         {
-            config.GetHelpPageSampleGenerator().ActualHttpMessageTypes.Add(new HelpPageSampleKey(SampleDirection.Request, controllerName, actionName, new[] { "*" }), type);
+            config.GetHelpPageSampleGenerator()
+                .ActualHttpMessageTypes.Add(new HelpPageSampleKey(SampleDirection.Request, controllerName, actionName, new[] { "*" }), type);
         }
 
         /// <summary>
@@ -143,7 +169,8 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
         /// <param name="parameterNames">The parameter names.</param>
         public static void SetActualRequestType(this HttpConfiguration config, Type type, string controllerName, string actionName, params string[] parameterNames)
         {
-            config.GetHelpPageSampleGenerator().ActualHttpMessageTypes.Add(new HelpPageSampleKey(SampleDirection.Request, controllerName, actionName, parameterNames), type);
+            config.GetHelpPageSampleGenerator()
+                .ActualHttpMessageTypes.Add(new HelpPageSampleKey(SampleDirection.Request, controllerName, actionName, parameterNames), type);
         }
 
         /// <summary>
@@ -156,7 +183,8 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
         /// <param name="actionName">Name of the action.</param>
         public static void SetActualResponseType(this HttpConfiguration config, Type type, string controllerName, string actionName)
         {
-            config.GetHelpPageSampleGenerator().ActualHttpMessageTypes.Add(new HelpPageSampleKey(SampleDirection.Response, controllerName, actionName, new[] { "*" }), type);
+            config.GetHelpPageSampleGenerator()
+                .ActualHttpMessageTypes.Add(new HelpPageSampleKey(SampleDirection.Response, controllerName, actionName, new[] { "*" }), type);
         }
 
         /// <summary>
@@ -170,7 +198,8 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
         /// <param name="parameterNames">The parameter names.</param>
         public static void SetActualResponseType(this HttpConfiguration config, Type type, string controllerName, string actionName, params string[] parameterNames)
         {
-            config.GetHelpPageSampleGenerator().ActualHttpMessageTypes.Add(new HelpPageSampleKey(SampleDirection.Response, controllerName, actionName, parameterNames), type);
+            config.GetHelpPageSampleGenerator()
+                .ActualHttpMessageTypes.Add(new HelpPageSampleKey(SampleDirection.Response, controllerName, actionName, parameterNames), type);
         }
 
         /// <summary>
@@ -178,9 +207,8 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
         /// </summary>
         /// <param name="config">The <see cref="HttpConfiguration"/>.</param>
         /// <returns>The help page sample generator.</returns>
-        public static HelpPageSampleGenerator GetHelpPageSampleGenerator(this HttpConfiguration config) => (HelpPageSampleGenerator)config.Properties.GetOrAdd(
-            typeof(HelpPageSampleGenerator),
-            k => new HelpPageSampleGenerator());
+        public static HelpPageSampleGenerator GetHelpPageSampleGenerator(this HttpConfiguration config)
+            => (HelpPageSampleGenerator)config.Properties.GetOrAdd(typeof(HelpPageSampleGenerator), k => new HelpPageSampleGenerator());
 
         /// <summary>
         /// Sets the help page sample generator.
@@ -189,10 +217,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
         /// <param name="sampleGenerator">The help page sample generator.</param>
         public static void SetHelpPageSampleGenerator(this HttpConfiguration config, HelpPageSampleGenerator sampleGenerator)
         {
-            config.Properties.AddOrUpdate(
-                typeof(HelpPageSampleGenerator),
-                k => sampleGenerator,
-                (k, o) => sampleGenerator);
+            config.Properties.AddOrUpdate(typeof(HelpPageSampleGenerator), k => sampleGenerator, (k, o) => sampleGenerator);
         }
 
         /// <summary>
@@ -200,9 +225,8 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
         /// </summary>
         /// <param name="config">The configuration.</param>
         /// <returns>The <see cref="ModelDescriptionGenerator"/></returns>
-        public static ModelDescriptionGenerator GetModelDescriptionGenerator(this HttpConfiguration config) => (ModelDescriptionGenerator)config.Properties.GetOrAdd(
-            typeof(ModelDescriptionGenerator),
-            k => InitializeModelDescriptionGenerator(config));
+        public static ModelDescriptionGenerator GetModelDescriptionGenerator(this HttpConfiguration config)
+            => (ModelDescriptionGenerator)config.Properties.GetOrAdd(typeof(ModelDescriptionGenerator), k => InitializeModelDescriptionGenerator(config));
 
         /// <summary>
         /// Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
@@ -219,7 +243,8 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
             if (!config.Properties.TryGetValue(modelId, out model))
             {
                 Collection<ApiDescription> apiDescriptions = config.Services.GetApiExplorer().ApiDescriptions;
-                ApiDescription apiDescription = apiDescriptions.FirstOrDefault(api => String.Equals(api.GetFriendlyId(), apiDescriptionId, StringComparison.OrdinalIgnoreCase));
+                ApiDescription apiDescription =
+                    apiDescriptions.FirstOrDefault(api => string.Equals(api.GetFriendlyId(), apiDescriptionId, StringComparison.OrdinalIgnoreCase));
                 if (apiDescription != null)
                 {
                     model = GenerateApiModel(apiDescription, config);
@@ -232,10 +257,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
 
         private static HelpPageApiModel GenerateApiModel(ApiDescription apiDescription, HttpConfiguration config)
         {
-            HelpPageApiModel apiModel = new HelpPageApiModel()
-            {
-                ApiDescription = apiDescription,
-            };
+            HelpPageApiModel apiModel = new HelpPageApiModel { ApiDescription = apiDescription };
 
             ModelDescriptionGenerator modelGenerator = config.GetModelDescriptionGenerator();
             HelpPageSampleGenerator sampleGenerator = config.GetHelpPageSampleGenerator();
@@ -247,6 +269,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
             return apiModel;
         }
 
+        [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1405:Debug.Assert must provide message text", Justification = "<Pending>")]
         private static void GenerateUriParameters(HelpPageApiModel apiModel, ModelDescriptionGenerator modelGenerator)
         {
             ApiDescription apiDescription = apiModel.ApiDescription;
@@ -278,15 +301,14 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
                     //     public int Y { get; set; }
                     // }
                     // Class Point is bindable with a TypeConverter, so Point will be added to UriParameters collection.
-                    // 
+                    //
                     // public class Point
                     // {
                     //     public int X { get; set; }
                     //     public int Y { get; set; }
                     // }
                     // Regular complex class Point will have properties X and Y added to UriParameters collection.
-                    if (complexTypeDescription != null
-                        && !IsBindableWithTypeConverter(parameterType))
+                    if (complexTypeDescription != null && !IsBindableWithTypeConverter(parameterType))
                     {
                         foreach (ParameterDescription uriParameter in complexTypeDescription.Properties)
                         {
@@ -295,18 +317,18 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
                     }
                     else if (parameterDescriptor != null)
                     {
-                        ParameterDescription uriParameter =
-                            AddParameterDescription(apiModel, apiParameter, typeDescription);
+                        ParameterDescription uriParameter = AddParameterDescription(apiModel, apiParameter, typeDescription);
 
                         if (!parameterDescriptor.IsOptional)
                         {
-                            uriParameter.Annotations.Add(new ParameterAnnotation() { Documentation = "Required" });
+                            uriParameter.Annotations.Add(new ParameterAnnotation { Documentation = "Required" });
                         }
 
                         object defaultValue = parameterDescriptor.DefaultValue;
                         if (defaultValue != null)
                         {
-                            uriParameter.Annotations.Add(new ParameterAnnotation() { Documentation = "Default value is " + Convert.ToString(defaultValue, CultureInfo.InvariantCulture) });
+                            uriParameter.Annotations.Add(
+                                new ParameterAnnotation { Documentation = "Default value is " + Convert.ToString(defaultValue, CultureInfo.InvariantCulture) });
                         }
                     }
                     else
@@ -333,21 +355,26 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
             return TypeDescriptor.GetConverter(parameterType).CanConvertFrom(typeof(string));
         }
 
-        private static ParameterDescription AddParameterDescription(HelpPageApiModel apiModel,
-            ApiParameterDescription apiParameter, ModelDescription typeDescription)
+        private static ParameterDescription AddParameterDescription(
+            HelpPageApiModel apiModel,
+            ApiParameterDescription apiParameter,
+            ModelDescription typeDescription)
         {
             ParameterDescription parameterDescription = new ParameterDescription
-            {
-                Name = apiParameter.Name,
-                Documentation = apiParameter.Documentation,
-                TypeDescription = typeDescription,
-            };
+                                                            {
+                                                                Name = apiParameter.Name,
+                                                                Documentation = apiParameter.Documentation,
+                                                                TypeDescription = typeDescription
+                                                            };
 
             apiModel.UriParameters.Add(parameterDescription);
             return parameterDescription;
         }
 
-        private static void GenerateRequestModelDescription(HelpPageApiModel apiModel, ModelDescriptionGenerator modelGenerator, HelpPageSampleGenerator sampleGenerator)
+        private static void GenerateRequestModelDescription(
+            HelpPageApiModel apiModel,
+            ModelDescriptionGenerator modelGenerator,
+            HelpPageSampleGenerator sampleGenerator)
         {
             ApiDescription apiDescription = apiModel.ApiDescription;
             foreach (ApiParameterDescription apiParameter in apiDescription.ParameterDescriptions)
@@ -358,8 +385,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
                     apiModel.RequestModelDescription = modelGenerator.GetOrCreateModelDescription(parameterType);
                     apiModel.RequestDocumentation = apiParameter.Documentation;
                 }
-                else if (apiParameter.ParameterDescriptor != null &&
-                    apiParameter.ParameterDescriptor.ParameterType == typeof(HttpRequestMessage))
+                else if (apiParameter.ParameterDescriptor != null && apiParameter.ParameterDescriptor.ParameterType == typeof(HttpRequestMessage))
                 {
                     Type parameterType = sampleGenerator.ResolveHttpRequestMessageType(apiDescription);
 
@@ -400,17 +426,24 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
             }
             catch (Exception e)
             {
-                apiModel.ErrorMessages.Add(String.Format(CultureInfo.CurrentCulture,
-                    "An exception has occurred while generating the sample. Exception message: {0}",
-                    HelpPageSampleGenerator.UnwrapException(e).Message));
+                apiModel.ErrorMessages.Add(
+                    string.Format(
+                        CultureInfo.CurrentCulture,
+                        "An exception has occurred while generating the sample. Exception message: {0}",
+                        HelpPageSampleGenerator.UnwrapException(e).Message));
             }
         }
 
-        private static bool TryGetResourceParameter(ApiDescription apiDescription, HttpConfiguration config, out ApiParameterDescription parameterDescription, out Type resourceType)
+        private static bool TryGetResourceParameter(
+            ApiDescription apiDescription,
+            HttpConfiguration config,
+            out ApiParameterDescription parameterDescription,
+            out Type resourceType)
         {
-            parameterDescription = apiDescription.ParameterDescriptions.FirstOrDefault(
-                p => p.Source == ApiParameterSource.FromBody ||
-                    (p.ParameterDescriptor != null && p.ParameterDescriptor.ParameterType == typeof(HttpRequestMessage)));
+            parameterDescription =
+                apiDescription.ParameterDescriptions.FirstOrDefault(
+                    p =>
+                    p.Source == ApiParameterSource.FromBody || (p.ParameterDescriptor != null && p.ParameterDescriptor.ParameterType == typeof(HttpRequestMessage)));
 
             if (parameterDescription == null)
             {
@@ -448,6 +481,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
                     modelGenerator.GetOrCreateModelDescription(parameterType);
                 }
             }
+
             return modelGenerator;
         }
 

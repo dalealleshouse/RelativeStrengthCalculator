@@ -18,13 +18,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelativeStrengthCalculator.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelativeStrengthCalculator.Api.Tests", "RelativeStrengthCalculator.Api.Tests\RelativeStrengthCalculator.Api.Tests.csproj", "{7ACB57EC-3F29-4383-9974-4017C3D9395A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{CDF8AD3D-55B6-4EBF-A478-2A0FEA080C3F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{44C571F0-E2BF-4253-8F57-87ECFDD1830B}"
 	ProjectSection(SolutionItems) = preProject
 		PublishScripts\AzureWebsitePublishModule.psm1 = PublishScripts\AzureWebsitePublishModule.psm1
 		PublishScripts\Publish-WebApplicationWebsite.ps1 = PublishScripts\Publish-WebApplicationWebsite.ps1
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{63797FF6-A0A0-44D8-84DC-7B699B539852}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{F01A7BFD-DE04-49CA-A0FD-BCBC82402743}"
 	ProjectSection(SolutionItems) = preProject
 		PublishScripts\Configurations\RelativeStrengthCalculatorApi-WAWS-dev.json = PublishScripts\Configurations\RelativeStrengthCalculatorApi-WAWS-dev.json
 	EndProjectSection
@@ -56,6 +56,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{63797FF6-A0A0-44D8-84DC-7B699B539852} = {CDF8AD3D-55B6-4EBF-A478-2A0FEA080C3F}
+		{F01A7BFD-DE04-49CA-A0FD-BCBC82402743} = {44C571F0-E2BF-4253-8F57-87ECFDD1830B}
 	EndGlobalSection
 EndGlobal

@@ -23,7 +23,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
     {
         internal const int DefaultCollectionSize = 2;
 
-        private readonly SimpleTypeObjectGenerator SimpleObjectGenerator = new SimpleTypeObjectGenerator();
+        private readonly SimpleTypeObjectGenerator _simpleObjectGenerator = new SimpleTypeObjectGenerator();
 
         /// <summary>
         /// Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
@@ -48,7 +48,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
             {
                 if (SimpleTypeObjectGenerator.CanGenerateObject(type))
                 {
-                    return this.SimpleObjectGenerator.GenerateObject(type);
+                    return this._simpleObjectGenerator.GenerateObject(type);
                 }
 
                 if (type.IsArray)
@@ -178,10 +178,12 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
                 parameterValues[i] = objectGenerator.GenerateObject(genericArgs[i], createdObjectReferences);
                 failedToCreateTuple &= parameterValues[i] == null;
             }
+
             if (failedToCreateTuple)
             {
                 return null;
             }
+
             object result = Activator.CreateInstance(type, parameterValues);
             return result;
         }
@@ -205,6 +207,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
                 // Failed to create key and values
                 return null;
             }
+
             object result = Activator.CreateInstance(keyValuePairType, keyObject, valueObject);
             return result;
         }
@@ -272,6 +275,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
             {
                 return possibleValues.GetValue(0);
             }
+
             return null;
         }
 
@@ -288,10 +292,12 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
             {
                 list = GenerateArray(typeof(object[]), size, createdObjectReferences);
             }
+
             if (list == null)
             {
                 return null;
             }
+
             if (isGeneric)
             {
                 Type argumentType = typeof(IEnumerable<>).MakeGenericType(queryableType.GetGenericArguments());
@@ -356,6 +362,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
 
                 result = defaultCtor.Invoke(new object[0]);
             }
+
             createdObjectReferences.Add(type, result);
             SetPublicProperties(type, result, createdObjectReferences);
             SetPublicFields(type, result, createdObjectReferences);
@@ -399,39 +406,41 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration
                 =>
                     new Dictionary<Type, Func<long, object>>
                         {
-                            { typeof(Boolean), index => true },
-                            { typeof(Byte), index => (Byte)64 },
-                            { typeof(Char), index => (Char)65 },
+                            { typeof(bool), index => true },
+                            { typeof(byte), index => (byte)64 },
+                            { typeof(char), index => (char)65 },
                             { typeof(DateTime), index => DateTime.Now },
                             { typeof(DateTimeOffset), index => new DateTimeOffset(DateTime.Now) },
                             { typeof(DBNull), index => DBNull.Value },
-                            { typeof(Decimal), index => (Decimal)index },
-                            { typeof(Double), index => index + 0.1 },
+                            { typeof(decimal), index => (decimal)index },
+                            { typeof(double), index => index + 0.1 },
                             { typeof(Guid), index => Guid.NewGuid() },
-                            { typeof(Int16), index => (Int16)(index % Int16.MaxValue) },
-                            { typeof(Int32), index => (Int32)(index % Int32.MaxValue) },
-                            { typeof(Int64), index => index },
-                            { typeof(Object), index => new object() },
-                            { typeof(SByte), index => (SByte)64 },
-                            { typeof(Single), index => (Single)(index + 0.1) },
+                            { typeof(short), index => (short)(index % short.MaxValue) },
+                            { typeof(int), index => (int)(index % int.MaxValue) },
+                            { typeof(long), index => index },
+                            { typeof(object), index => new object() },
+                            { typeof(sbyte), index => (sbyte)64 },
+                            { typeof(float), index => (float)(index + 0.1) },
                             {
-                                typeof(String),
-                                index => { return String.Format(CultureInfo.CurrentCulture, "sample string {0}", index); }
+                                typeof(string),
+                                index => { return string.Format(CultureInfo.CurrentCulture, "sample string {0}", index); }
                             },
                             { typeof(TimeSpan), index => { return TimeSpan.FromTicks(1234567); } },
-                            { typeof(UInt16), index => (UInt16)(index % UInt16.MaxValue) },
-                            { typeof(UInt32), index => (UInt32)(index % UInt32.MaxValue) },
-                            { typeof(UInt64), index => (UInt64)index },
+                            { typeof(ushort), index => (ushort)(index % ushort.MaxValue) },
+                            { typeof(uint), index => (uint)(index % uint.MaxValue) },
+                            { typeof(ulong), index => (ulong)index },
                             {
                                 typeof(Uri),
                                 index =>
                                     {
                                         return
                                             new Uri(
-                                                String.Format(CultureInfo.CurrentCulture, "http://webapihelppage{0}.com", index));
+                                                string.Format(CultureInfo.CurrentCulture, "http://webapihelppage{0}.com", index));
                                     }
                             }
-                        };
+                        }
+
+;
 
             public static bool CanGenerateObject(Type type) => DefaultGenerators.ContainsKey(type);
 
