@@ -11,7 +11,7 @@ namespace RelativeStrengthCalculator.Api.Models
     /// <summary>
     /// Data transfer object for coefficient calculations
     /// </summary>
-    public class CoefficientDto
+    public class CoefficientDto : CalculatorRequestDto
     {
         /// <summary>
         /// Calculated coefficient value

@@ -32,14 +32,14 @@ namespace RelativeStrengthCalculator.Tests.RelativeStrengthCalculatorFactory
         [TestMethod]
         public void CreateSchwartzMaloneCalculator()
         {
-            var result = this._sut.Build(CalculatorType.SchwartzMalone, WeightUnit.Pounds);
+            var result = this._sut.Build(Formula.SchwartzMalone, WeightUnit.Pounds);
             Assert.IsInstanceOfType(result, typeof(SchwartzMaloneCalculator));
         }
 
         [TestMethod]
         public void CreateWilksCalculator()
         {
-            var result = this._sut.Build(CalculatorType.Wilks, WeightUnit.Kilograms);
+            var result = this._sut.Build(Formula.Wilks, WeightUnit.Kilograms);
             Assert.IsInstanceOfType(result, typeof(WilksCalculator));
         }
     }

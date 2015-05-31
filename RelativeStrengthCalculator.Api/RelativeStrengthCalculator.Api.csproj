@@ -177,6 +177,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Models\CalculatorRequestDto.cs" />
+    <Compile Include="Models\CalculatorResultFactory.cs" />
     <Compile Include="Models\ScoreDto.cs" />
     <Compile Include="Models\CoefficientDto.cs" />
     <Compile Include="Controllers\RelativeStrengthController.cs" />

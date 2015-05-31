@@ -30,7 +30,7 @@ namespace RelativeStrengthCalculator.Tests.SchwartzMalone.SchwartzMaloneCalculat
             var testCase = this.GetTestCase();
             Debug.WriteLine(testCase);
 
-            var result = sut.AdjustedTotal(testCase.Sex, testCase.Weight, testCase.Total);
+            var result = sut.Score(testCase.Sex, testCase.Weight, testCase.Total);
             Assert.AreEqual(testCase.Score, result);
         }
 
@@ -44,7 +44,7 @@ namespace RelativeStrengthCalculator.Tests.SchwartzMalone.SchwartzMaloneCalculat
             var testCase = this.GetTestCase();
             Debug.WriteLine(testCase);
 
-            var result = sut.AdjustedTotal(testCase.Sex, testCase.Weight, testCase.Total);
+            var result = sut.Score(testCase.Sex, testCase.Weight, testCase.Total);
             Assert.AreEqual(testCase.Score, Math.Round(result, 9));
         }
     }

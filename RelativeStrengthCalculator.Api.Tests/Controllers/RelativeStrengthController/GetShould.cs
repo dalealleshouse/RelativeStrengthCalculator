@@ -11,7 +11,6 @@ namespace RelativeStrengthCalculator.Api.Tests.Controllers.RelativeStrengthContr
 
     using global::RelativeStrengthCalculator.Api.Controllers;
     using global::RelativeStrengthCalculator.Api.Models;
-    using global::RelativeStrengthCalculator.WeightConverter;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -21,17 +20,15 @@ namespace RelativeStrengthCalculator.Api.Tests.Controllers.RelativeStrengthContr
     public class GetShould
     {
         private const decimal MockCoefficient = 5.635m;
-        private const decimal MockTotal = 6.535m;
+
+        private const decimal MockScore = 6.535m;
 
         [TestMethod]
         public void GenerateCoefficient()
         {
-            var factory = new Mock<IRelativeStrengthCalculatorFactory>();
-            factory.Setup(f => f.Build(It.IsAny<CalculatorType>(), It.IsAny<WeightUnit>())).Returns(new MockCalculator());
+            var sut = BuildSut();
 
-            var sut = new RelativeStrengthController(factory.Object);
-
-            var result = sut.Get(CalculatorType.Invalid, WeightUnit.Invalid, Sex.Invalid, 10m);
+            var result = sut.Get(Formula.Invalid, WeightUnit.Invalid, Sex.Invalid, 10m);
 
             var typedResult = result as OkNegotiatedContentResult<CoefficientDto>;
             Assert.IsNotNull(typedResult);
@@ -39,35 +36,57 @@ namespace RelativeStrengthCalculator.Api.Tests.Controllers.RelativeStrengthContr
         }
 
         [TestMethod]
-        public void GenerateTotal()
+        public void CopyValueFromCoefficientRequest()
         {
-            var factory = new Mock<IRelativeStrengthCalculatorFactory>();
-            factory.Setup(f => f.Build(It.IsAny<CalculatorType>(), It.IsAny<WeightUnit>())).Returns(new MockCalculator());
+            const decimal Expected = 45m;
+            const Sex ExpectedSex = Sex.Male;
+            var sut = BuildSut();
 
-            var sut = new RelativeStrengthController(factory.Object);
+            var result = sut.Get(Formula.Invalid, WeightUnit.Invalid, ExpectedSex, Expected);
 
-            var result = sut.Get(CalculatorType.Invalid, WeightUnit.Invalid, Sex.Invalid, 10m, 10m);
+            var typedResult = result as OkNegotiatedContentResult<CoefficientDto>;
+            Assert.IsNotNull(typedResult);
+            Assert.AreEqual(ExpectedSex, typedResult.Content.Sex);
+            Assert.AreEqual(Expected, typedResult.Content.BodyWeight);
+        }
+
+        [TestMethod]
+        public void GenerateScore()
+        {
+            var sut = BuildSut();
+
+            var result = sut.Get(Formula.Invalid, WeightUnit.Invalid, Sex.Invalid, 10m, 10m);
 
             var typedResult = result as OkNegotiatedContentResult<ScoreDto>;
             Assert.IsNotNull(typedResult);
             Assert.AreEqual(MockCoefficient, typedResult.Content.Coefficient);
-            Assert.AreEqual(MockTotal, typedResult.Content.Score);
+            Assert.AreEqual(MockScore, typedResult.Content.Score);
         }
 
-        private class MockCalculator : RelativeStrengthCalculator
+        [TestMethod]
+        public void CopyValueFromScoreRequest()
         {
-            public MockCalculator()
-                : base(new WeightConverterService(), WeightUnit.Invalid)
-            {
-            }
+            const decimal ExpectedBodyWeight = 45m;
+            const decimal ExpectedWeight = 450m;
+            const Sex ExpectedSex = Sex.Male;
+            var sut = BuildSut();
 
-            protected override WeightUnit BaseWeightUnit => WeightUnit.Invalid;
+            var result = sut.Get(Formula.Invalid, WeightUnit.Invalid, ExpectedSex, ExpectedBodyWeight, ExpectedWeight);
 
-            public override CalculatorType CalculatorType => CalculatorType.Invalid;
+            var typedResult = result as OkNegotiatedContentResult<ScoreDto>;
+            Assert.IsNotNull(typedResult);
+            Assert.AreEqual(ExpectedSex, typedResult.Content.Sex);
+            Assert.AreEqual(ExpectedBodyWeight, typedResult.Content.BodyWeight);
+            Assert.AreEqual(ExpectedWeight, typedResult.Content.Weight);
+        }
 
-            public override decimal Coefficient(Sex sex, decimal bodyWeight) => MockCoefficient;
+        private static RelativeStrengthController BuildSut()
+        {
+            var factory = new Mock<IRelativeStrengthCalculatorFactory>();
+            factory.Setup(f => f.Build(It.IsAny<Formula>(), It.IsAny<WeightUnit>()))
+                .Returns(new MockCalculator() { MockCoefficient = MockCoefficient, MockScore = MockScore });
 
-            public override decimal AdjustedTotal(Sex sex, decimal bodyWeight, decimal total) => MockTotal;
+            return new RelativeStrengthController(factory.Object);
         }
     }
 }

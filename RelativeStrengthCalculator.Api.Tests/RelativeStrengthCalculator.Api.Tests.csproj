@@ -58,6 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\RelativeStrengthController\GetShould.cs" />
+    <Compile Include="Controllers\RelativeStrengthController\MockCalculator.cs" />
+    <Compile Include="Controllers\RelativeStrengthController\PostShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

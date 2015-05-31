@@ -27,7 +27,7 @@ namespace RelativeStrengthCalculator
 
         protected abstract WeightUnit BaseWeightUnit { get; }
 
-        public abstract CalculatorType CalculatorType { get; }
+        public abstract Formula CalculatorType { get; }
 
         protected IWeightConverterService WeightConverterService { get; }
 
@@ -35,7 +35,7 @@ namespace RelativeStrengthCalculator
 
         public abstract decimal Coefficient(Sex sex, decimal bodyWeight);
 
-        public virtual decimal AdjustedTotal(Sex sex, decimal bodyWeight, decimal total)
+        public virtual decimal Score(Sex sex, decimal bodyWeight, decimal total)
         {
             var coefficient = this.Coefficient(sex, bodyWeight);
             var baseWeight = this.GetBaseWeight(total);

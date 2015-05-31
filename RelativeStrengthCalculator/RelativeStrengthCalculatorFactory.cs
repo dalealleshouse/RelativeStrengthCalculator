@@ -24,7 +24,7 @@ namespace RelativeStrengthCalculator
             this._typeLoader = typeLoader;
         }
 
-        public RelativeStrengthCalculator Build(CalculatorType calculatorType, WeightUnit desiredUnit)
+        public RelativeStrengthCalculator Build(Formula calculatorType, WeightUnit desiredUnit)
         {
             var name = $"{calculatorType}Calculator";
             var calc = this._typeLoader.LoadType(name, this._weightConverterService, desiredUnit);

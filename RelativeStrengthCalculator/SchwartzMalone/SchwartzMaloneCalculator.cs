@@ -21,7 +21,7 @@ namespace RelativeStrengthCalculator.SchwartzMalone
 
         protected override WeightUnit BaseWeightUnit => WeightUnit.Kilograms;
 
-        public override CalculatorType CalculatorType => CalculatorType.SchwartzMalone;
+        public override Formula CalculatorType => Formula.SchwartzMalone;
 
         public override decimal Coefficient(Sex sex, decimal bodyWeight)
         {
@@ -32,7 +32,7 @@ namespace RelativeStrengthCalculator.SchwartzMalone
             return !table.ContainsKey(weight) ? 0 : table[weight];
         }
 
-        public override decimal AdjustedTotal(Sex sex, decimal bodyWeight, decimal total)
+        public override decimal Score(Sex sex, decimal bodyWeight, decimal total)
         {
             var coefficient = this.Coefficient(sex, bodyWeight);
 

@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalculatorType.cs" />
+    <Compile Include="Formula.cs" />
     <Compile Include="DecimalExtensions.cs" />
     <Compile Include="IRelativeStrengthCalculatorFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,5 +1,5 @@
 ﻿// --------------------------------
-// <copyright file="CalculatorType.cs">
+// <copyright file="Formula.cs">
 // Copyright (c) 2015 All rights reserved.
 // </copyright>
 // <author>dallesho</author>
@@ -8,7 +8,7 @@
 
 namespace RelativeStrengthCalculator
 {
-    public enum CalculatorType
+    public enum Formula
     {
         Invalid = 0,
 

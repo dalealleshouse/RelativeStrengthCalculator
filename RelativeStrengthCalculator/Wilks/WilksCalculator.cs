@@ -21,7 +21,7 @@ namespace RelativeStrengthCalculator.Wilks
 
         protected override WeightUnit BaseWeightUnit => WeightUnit.Kilograms;
 
-        public override CalculatorType CalculatorType => CalculatorType.Wilks;
+        public override Formula CalculatorType => Formula.Wilks;
 
         public override decimal Coefficient(Sex sex, decimal bodyWeight)
         {
