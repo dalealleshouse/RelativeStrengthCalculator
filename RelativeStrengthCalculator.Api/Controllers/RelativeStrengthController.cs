@@ -16,8 +16,11 @@ namespace RelativeStrengthCalculator.Api.Controllers
 
     using global::RelativeStrengthCalculator.WeightConverter;
 
+    /// <summary>
+    /// Provides relative strength calculations
+    /// </summary>
     [EnableCors("*", "*", "*")]
-    [RoutePrefix("RelativeStrength")]
+    [RoutePrefix("")]
     public class RelativeStrengthController : ApiController
     {
         private readonly IRelativeStrengthCalculatorFactory _factory;
@@ -37,6 +40,14 @@ namespace RelativeStrengthCalculator.Api.Controllers
             this._factory = factory;
         }
 
+        /// <summary>
+        /// bar
+        /// </summary>
+        /// <param name="algorithm"></param>
+        /// <param name="units"></param>
+        /// <param name="sex"></param>
+        /// <param name="bodyWeight"></param>
+        /// <returns>Some data here</returns>
         [Route("{algorithm}/{units}/{sex}/{bodyWeight}")]
         public IHttpActionResult Get(CalculatorType algorithm, WeightUnit units, Sex sex, decimal bodyWeight)
         {
@@ -46,6 +57,15 @@ namespace RelativeStrengthCalculator.Api.Controllers
             return this.Ok(result);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="algorithm"></param>
+        /// <param name="units"></param>
+        /// <param name="sex"></param>
+        /// <param name="bodyWeight"></param>
+        /// <param name="weight"></param>
+        /// <returns></returns>
         [Route("{algorithm}/{units}/{sex}/{bodyWeight}/{weight}")]
         public IHttpActionResult Get(CalculatorType algorithm, WeightUnit units, Sex sex, decimal bodyWeight, decimal weight)
         {

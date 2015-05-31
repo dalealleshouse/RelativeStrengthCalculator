@@ -10,6 +10,7 @@ namespace RelativeStrengthCalculator.Api
 {
     using System.Net.Http.Headers;
     using System.Web.Http;
+    using System.Web.Mvc;
 
     using Newtonsoft.Json.Serialization;
 
@@ -29,6 +30,8 @@ namespace RelativeStrengthCalculator.Api
             // Make web api object use camelCase on the client and PascalCase on the server
             var json = config.Formatters.JsonFormatter;
             json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            AreaRegistration.RegisterAllAreas();
         }
     }
 }
