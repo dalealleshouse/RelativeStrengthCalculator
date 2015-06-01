@@ -9,9 +9,10 @@
 #pragma warning disable 1591
 namespace RelativeStrengthCalculator.Api
 {
-    using System.Net.Http.Headers;
     using System.Web.Http;
     using System.Web.Mvc;
+
+    using global::RelativeStrengthCalculator.Api.MediaFormatters;
 
     using Newtonsoft.Json.Serialization;
 
@@ -25,7 +26,8 @@ namespace RelativeStrengthCalculator.Api
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new { id = RouteParameter.Optional });
-            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+            config.Formatters.Add(new ScoreFormatter());
+            config.Formatters.Add(new CoefficientFormatter());
             config.EnableCors();
 
             // Make web api object use camelCase on the client and PascalCase on the server
