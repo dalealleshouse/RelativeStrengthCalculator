@@ -57,8 +57,8 @@ namespace RelativeStrengthCalculator.Api.Controllers
         /// <b>Note:</b> If the bodyWeight parameter has a decimal point, the request needs to end with a <mark>/</mark><br />
         /// <example>
         /// <div class="well">
-        /// <a target="_blank" href="http://rscalc.azurewebsites.net/1/1/1/100.25">http://rscalc.azurewebsites.net/1/1/1/100.25</a> - This will result in a bad request error.<br />
-        /// <a target="_blank" href="http://rscalc.azurewebsites.net/1/1/1/100.25/">http://rscalc.azurewebsites.net/1/1/1/100.25<mark>/</mark></a> - This is valid.
+        /// <a target="_blank" href="http://rscalc.azurewebsites.net/Wilks/Pounds/Female/100.25">http://rscalc.azurewebsites.net/Wilks/Pounds/Female/100.25</a> - This will result in a bad request error.<br />
+        /// <a target="_blank" href="http://rscalc.azurewebsites.net/Wilks/Pounds/Female/100.25/">http://rscalc.azurewebsites.net/Wilks/Pounds/Female/100.25<mark>/</mark></a> - This is valid.
         /// </div>
         /// </example>
         /// </summary>
@@ -82,8 +82,8 @@ namespace RelativeStrengthCalculator.Api.Controllers
         /// <b>Note:</b> If the weight parameter has a decimal point, the request needs to end with a <mark>/</mark><br />
         /// <example>
         /// <div class="well">
-        /// <a target="_blank" href="http://rscalc.azurewebsites.net/1/1/1/100/200.25">http://rscalc.azurewebsites.net/1/1/1/100/200.25</a> - This will result in a bad request error.<br />
-        /// <a target="_blank" href="http://rscalc.azurewebsites.net/1/1/1/100/200.25/">http://rscalc.azurewebsites.net/1/1/1/100/200.25<mark>/</mark></a> - This is valid.
+        /// <a target="_blank" href="http://rscalc.azurewebsites.net/Wilks/Pounds/Female/100/200.25">http://rscalc.azurewebsites.net/Wilks/Pounds/Female/100/200.25</a> - This will result in a bad request error.<br />
+        /// <a target="_blank" href="http://rscalc.azurewebsites.net/Wilks/Pounds/Female/100/200.25/">http://rscalc.azurewebsites.net/Wilks/Pounds/Female/100/200.25<mark>/</mark></a> - This is valid.
         /// </div>
         /// </example>
         /// </summary>
@@ -111,7 +111,7 @@ namespace RelativeStrengthCalculator.Api.Controllers
         /// <param name="requests">Collection of ScoreDto objects with the coefficient and score populated</param>
         /// <returns>Collection of CalculatorRequestDto objects to perform calculations on</returns>
         [ResponseType(typeof(IEnumerable<ScoreDto>))]
-        [Route("{formula:int}/{units:int}")]
+        [Route("{formula}/{units}")]
         public IHttpActionResult Post(Formula formula, WeightUnit units, [FromBody] IEnumerable<CalculatorRequestDto> requests)
         {
             var calc = this._factory.Build(formula, units);

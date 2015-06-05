@@ -20,6 +20,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
+            context.MapRoute("ResourceModel", "Help/ResourceModel/{modelName}", new { controller = "Help", action = "ResourceModel", modelName = UrlParameter.Optional });
             context.MapRoute("HelpPage_Default", "Help/{action}/{apiId}", new { controller = "Help", action = "Index", apiId = UrlParameter.Optional });
 
             HelpPageConfig.Register(GlobalConfiguration.Configuration);

@@ -19,7 +19,6 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.App_Start
     using System.Web.Http;
 
     using global::RelativeStrengthCalculator.Api.Areas.HelpPage.SampleGeneration;
-    using global::RelativeStrengthCalculator.Api.Properties;
 
     /// <summary>
     /// Use this class to customize the Help Page.
@@ -69,7 +68,7 @@ namespace RelativeStrengthCalculator.Api.Areas.HelpPage.App_Start
             //// Uncomment the following to use the image on "../images/aspNetHome.png" directly as the response sample for media type "image/png"
             //// on the controller named "Values" and action named "Get" with parameter "id".
             // config.SetSampleResponse(new ImageSample("../images/aspNetHome.png"), new MediaTypeHeaderValue("image/png"), "Values", "Get", "id");
-            config.SetSampleResponse(Resources.results, new MediaTypeHeaderValue("text/html"), "RelativeStrength", "Get");
+            // config.SetSampleResponse(null, new MediaTypeHeaderValue("text/html"), "RelativeStrength", "Get");
 
             //// Uncomment the following to correct the sample request when the action expects an HttpRequestMessage with ObjectContent<string>.
             //// The sample will be generated as if the controller named "Values" and action named "Get" were having string as the body parameter.
