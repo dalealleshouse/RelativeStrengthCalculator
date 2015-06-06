@@ -481,50 +481,28 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="T:RelativeStrengthCalculator.Api.Models.CalculatorRequestDto">
+        <member name="T:RelativeStrengthCalculator.Api.Controllers.MetadataController">
             <summary>
-            Data transfer object that specifies a contract for requesting relative strength calculations
+            Provides meta data for relative strength requests
             </summary>
         </member>
-        <member name="P:RelativeStrengthCalculator.Api.Models.CalculatorRequestDto.Id">
+        <member name="M:RelativeStrengthCalculator.Api.Controllers.MetadataController.GetFormulas">
             <summary>
-            Id specified by the client, this is returned in the response to aid the client in identifying the record
+            Key value pairs representing all formulas supported by the relative strength calculator
             </summary>
+            <returns>Dictionary containing all supported formulas</returns>
         </member>
-        <member name="P:RelativeStrengthCalculator.Api.Models.CalculatorRequestDto.Sex">
+        <member name="M:RelativeStrengthCalculator.Api.Controllers.MetadataController.GetWeightUnits">
             <summary>
-            The sex to use in the relative strength calculation
+            Key value pairs representing all weight units supported by the relative strength calculator
             </summary>
+            <returns>Dictionary containing all supported weight units</returns>
         </member>
-        <member name="P:RelativeStrengthCalculator.Api.Models.CalculatorRequestDto.BodyWeight">
+        <member name="M:RelativeStrengthCalculator.Api.Controllers.MetadataController.GetSexes">
             <summary>
-            The body weight to use in the relative strength calculation
+            Key value pairs representing sexes used by the relative strength calculator
             </summary>
-        </member>
-        <member name="P:RelativeStrengthCalculator.Api.Models.CalculatorRequestDto.Weight">
-            <summary>
-            The weight used to use in the relative strength calculation
-            </summary>
-        </member>
-        <member name="T:RelativeStrengthCalculator.Api.Models.ScoreDto">
-            <summary>
-            Data transfer object for coefficients and scores
-            </summary>
-        </member>
-        <member name="P:RelativeStrengthCalculator.Api.Models.ScoreDto.Score">
-            <summary>
-            Calculated relative strength score
-            </summary>
-        </member>
-        <member name="T:RelativeStrengthCalculator.Api.Models.CoefficientDto">
-            <summary>
-            Data transfer object for coefficient calculations
-            </summary>
-        </member>
-        <member name="P:RelativeStrengthCalculator.Api.Models.CoefficientDto.Coefficient">
-            <summary>
-            Calculated coefficient value
-            </summary>
+            <returns>Dictionary containing Sexes</returns>
         </member>
         <member name="T:RelativeStrengthCalculator.Api.Controllers.RelativeStrengthController">
             <summary>
@@ -587,6 +565,51 @@
             <param name="units">WeightUnit indicating the unit that the weight and bodyWeight parameters will be in</param>
             <param name="requests">Collection of ScoreDto objects with the coefficient and score populated</param>
             <returns>Collection of CalculatorRequestDto objects to perform calculations on</returns>
+        </member>
+        <member name="T:RelativeStrengthCalculator.Api.Models.CalculatorRequestDto">
+            <summary>
+            Data transfer object that specifies a contract for requesting relative strength calculations
+            </summary>
+        </member>
+        <member name="P:RelativeStrengthCalculator.Api.Models.CalculatorRequestDto.Id">
+            <summary>
+            Id specified by the client, this is returned in the response to aid the client in identifying the record
+            </summary>
+        </member>
+        <member name="P:RelativeStrengthCalculator.Api.Models.CalculatorRequestDto.Sex">
+            <summary>
+            The sex to use in the relative strength calculation
+            </summary>
+        </member>
+        <member name="P:RelativeStrengthCalculator.Api.Models.CalculatorRequestDto.BodyWeight">
+            <summary>
+            The body weight to use in the relative strength calculation
+            </summary>
+        </member>
+        <member name="P:RelativeStrengthCalculator.Api.Models.CalculatorRequestDto.Weight">
+            <summary>
+            The weight used to use in the relative strength calculation
+            </summary>
+        </member>
+        <member name="T:RelativeStrengthCalculator.Api.Models.ScoreDto">
+            <summary>
+            Data transfer object for coefficients and scores
+            </summary>
+        </member>
+        <member name="P:RelativeStrengthCalculator.Api.Models.ScoreDto.Score">
+            <summary>
+            Calculated relative strength score
+            </summary>
+        </member>
+        <member name="T:RelativeStrengthCalculator.Api.Models.CoefficientDto">
+            <summary>
+            Data transfer object for coefficient calculations
+            </summary>
+        </member>
+        <member name="P:RelativeStrengthCalculator.Api.Models.CoefficientDto.Coefficient">
+            <summary>
+            Calculated coefficient value
+            </summary>
         </member>
         <member name="T:RelativeStrengthCalculator.Api.Properties.Resources">
             <summary>

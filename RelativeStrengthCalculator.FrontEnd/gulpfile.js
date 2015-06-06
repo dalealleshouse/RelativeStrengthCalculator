@@ -5,27 +5,27 @@ var gutil = require('gulp-util');
 var wrench = require('wrench');
 
 var options = {
-  src: 'src',
-  dist: 'wwwroot',
-  tmp: '.tmp',
-  e2e: 'e2e',
-  errorHandler: function(title) {
-    return function(err) {
-      gutil.log(gutil.colors.red('[' + title + ']'), err.toString());
-      this.emit('end');
-    };
-  },
-  wiredep: {
-    directory: 'bower_components'
-  }
+    src: 'src',
+    dist: 'wwwroot',
+    tmp: '.tmp',
+    e2e: 'e2e',
+    errorHandler: function(title) {
+        return function(err) {
+            gutil.log(gutil.colors.red('[' + title + ']'), err.toString());
+            this.emit('end');
+        };
+    },
+    wiredep: {
+        directory: 'bower_components'
+    }
 };
 
 wrench.readdirSyncRecursive('./gulp').filter(function(file) {
-  return (/\.(js|coffee)$/i).test(file);
+    return (/\.(js|coffee)$/i).test(file);
 }).map(function(file) {
-  require('./gulp/' + file)(options);
+    require('./gulp/' + file)(options);
 });
 
-gulp.task('default', ['clean'], function () {
+gulp.task('default', ['clean'], function() {
     gulp.start('build');
 });

@@ -62,6 +62,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="EnumExtensions\GetDictionaryShould.cs" />
     <Compile Include="Helpers\CalculatorTestBase.cs" />
     <Compile Include="DecimalExtensions\PowerShould.cs" />
     <Compile Include="Helpers\CalculatorTestCase.cs" />
