@@ -8,14 +8,12 @@ module RelativeStrengthCalculator {
     };
 
     class Routes {
-        static $inject = ['$stateProvider', '$urlRouterProvider'];
-
         constructor($stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider) {
             $stateProvider
                 .state('home', {
                     url: '/',
                     templateUrl: 'app/main/main.html',
-                    controller: 'MainCtrl',
+                    controller: 'MainController',
                     controllerAs: 'vm'
                 });
 
@@ -23,7 +21,15 @@ module RelativeStrengthCalculator {
         }
     };
 
+    class Theme {
+        constructor($mdThemingProvider: angular.material.MDThemingProvider) {
+            $mdThemingProvider.theme('default')
+                .primaryPalette('blue-grey');
+        }
+    }
+
     angular.module(appName)
         .config(HtmlFiveMode)
-        .config(Routes);
+        .config(Routes)
+        .config(Theme);
 }

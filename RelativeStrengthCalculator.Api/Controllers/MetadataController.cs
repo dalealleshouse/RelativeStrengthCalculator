@@ -10,11 +10,13 @@ namespace RelativeStrengthCalculator.Api.Controllers
 {
     using System.Collections.Generic;
     using System.Web.Http;
+    using System.Web.Http.Cors;
     using System.Web.Http.Description;
 
     /// <summary>
     /// Provides meta data for relative strength requests
     /// </summary>
+    [EnableCors("*", "*", "*")]
     [RoutePrefix("api/metadata")]
     public class MetadataController : ApiController
     {

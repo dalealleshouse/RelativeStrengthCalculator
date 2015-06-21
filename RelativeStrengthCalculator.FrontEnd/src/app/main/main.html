@@ -1,34 +1,29 @@
-<div layout="vertical" layout-fill>
-
-  <md-content>
-    <header ng-include="'app/components/navbar/navbar.html'"></header>
-
-    <section class="jumbotron">
-      <h1>'Allo, 'Allo!</h1>
-      <p class="lead">
-        <img src="assets/images/yeoman.png" alt="I'm Yeoman"><br>
-        Always a pleasure scaffolding your apps.
-      </p>
-      <p><a class="btn" ng-href="#">Splendid!</a></p>
-    </section>
-
-    <div class="techs" layout-align="center">
-      <md-card ng-repeat="awesomeThing in awesomeThings | orderBy:'rank'">
-        <div class="thumbnail">
-          <img class="pull-right" ng-src="assets/images/{{awesomeThing.logo}}" alt="{{awesomeThing.title}}">
-          <div class="caption">
-            <h3>{{awesomeThing.title}}</h3>
-            <p>{{awesomeThing.description}}</p>
-            <p><a ng-href="{{awesomeThing.url}}">{{awesomeThing.url}}</a></p>
-          </div>
+<div layout="column" layout-align="center center">
+    <md-content ng-show="vm.loading" class="loading" layout-padding>
+        <h1 class="md-title">Loading...</h1>
+        <div layout="row" layout-sm="column" layout-align="center center">
+            <md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
         </div>
-      </md-card>
-    </div>
-    <footer>
-      <md-toolbar layout="row" layout-align="center center">
-        <p>With ♥ from <a href="https://twitter.com/Swiip">@Swiip</a></p>
-      </md-toolbar>
-    </footer>
-  </md-content>
-
+    </md-content>
+    <md-content ng-hide="vm.loading" layout-padding>
+        <form name="calcForm" novalidate>
+            <div layout="row">
+                <md-select ng-model="vm.formula" placeholder="Formula" required>
+                    <md-option ng-repeat="(key, value) in vm.metaData.formulas" value="{{key}}">{{value}}</md-option>
+                </md-select>
+                <md-select ng-model="vm.weightUnits" placeholder="Weight Units" required>
+                    <md-option ng-repeat="(key, value) in vm.metaData.weightUnits" value="{{key}}">{{value}}</md-option>
+                </md-select>
+            </div>
+            <div layout="column">
+                <md-input-container flex="">
+                    <label>Calculations <cite>i.e: id,Male,100,200 where 100 is body weight and 200 is weight lifted</cite></label>
+                    <textarea ng-model="vm.calculations" columns="1" md-maxlength="500" required rsc-calculator-input-validator></textarea>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-align="end center">
+                <md-button class="md-raised md-primary" ng-disabled="calcForm.$invalid" ng-click="vm.calc(vm.calculations)">Calculate</md-button>
+            </div>
+        </form>
+    </md-content>
 </div>

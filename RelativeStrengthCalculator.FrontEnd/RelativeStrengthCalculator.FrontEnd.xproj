@@ -16,5 +16,8 @@
     <DevelopmentServerPort>8511</DevelopmentServerPort>
     <GruntGulpQueried>True</GruntGulpQueried>
   </PropertyGroup>
+  <PropertyGroup>
+    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
+  </PropertyGroup>
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>

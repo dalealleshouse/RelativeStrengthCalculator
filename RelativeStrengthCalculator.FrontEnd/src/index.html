@@ -23,26 +23,33 @@
 </head>
 <body>
 <!--[if lt IE 10]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> in order to use this site.</p>
 <![endif]-->
 
+<header>
+    <md-toolbar layout="row" layout-align="start center">
+        Relative Strength Calculator
+    </md-toolbar>
+</header>
 <div ui-view></div>
-
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-<script>
-    (function(b, o, i, l, e, r) {
-        b.GoogleAnalyticsObject = l;
-        b[l] || (b[l] =
-            function() { (b[l].q = b[l].q || []).push(arguments) });
-        b[l].l = +new Date;
-        e = o.createElement(i);
-        r = o.getElementsByTagName(i)[0];
-        e.src = '//www.google-analytics.com/analytics.js';
-        r.parentNode.insertBefore(e, r);
-    }(window, document, 'script', 'ga'));
-    ga('create', 'UA-XXXXX-X');
-    ga('send', 'pageview');
-</script>
+<footer>
+    <md-toolbar layout="column" layout-align="left center">
+        <p>
+            This is an open source project. All source code is available <a href="https://github.com/dalealleshouse/RelativeStrengthCalculator">here</a>.
+            If you have bugs, issues, or just want more features make a request <a href="https://github.com/dalealleshouse/RelativeStrengthCalculator/issues">here</a>.
+            If I have time, I'll code it up. Additionally, I'll entertain any valid pull requests.
+        </p>
+        <p>
+            This web service is 100% free for anyone to use. Any donations are much appreciated:
+        </p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="2AW2YCZ6K3MYA">
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+    </md-toolbar>
+</footer>
 
 <!-- build:js(src) scripts/vendor.js -->
 <!-- bower:js -->

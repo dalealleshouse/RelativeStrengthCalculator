@@ -9,8 +9,9 @@
     }
 
     export class RelativeStrengthService implements IRelativeStrengthService {
-        static id = 'RelativeStrengthService';
+        static id = 'relativeStrengthService';
 
+        /*@ngInject*/
         constructor(private $q: ng.IQService, private $http: ng.IHttpService) {}
 
         get baseUrl(): string {

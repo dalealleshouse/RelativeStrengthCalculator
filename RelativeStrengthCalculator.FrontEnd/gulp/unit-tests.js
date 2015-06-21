@@ -20,7 +20,7 @@ module.exports = function(options) {
     var specFiles = [
         options.tmp + '/**/*.spec.js',
        //options.src + '/**/*.spec.js',
-      options.src + '/**/*.mock.js'
+      options.tmp + '/**/*.mock.js'
     ];
 
     var htmlFiles = [

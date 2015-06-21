@@ -1,35 +1,34 @@
 module RelativeStrengthCalculator {
     'use strict';
 
-    describe('controllers', function() {
-        var scope;
+    describe('MainController should', () => {
+        beforeEach(module(appName));
 
-        beforeEach(module('RelativeStrengthCalculator'));
+        it('have loading true until after meta data returns', () => {
+            var builder = new SutFactory();
+            var sut = builder.build();
 
-        beforeEach(inject(function($rootScope: ng.IRootScopeService) {
-            scope = $rootScope.$new();
-        }));
-
-        it('should define more than 5 awesome things', inject(function($controller: ng.IControllerService) {
-            expect(scope.awesomeThings).toBeUndefined();
-
-            $controller('MainCtrl', {
-                $scope: scope
-            });
-
-            expect(angular.isArray(scope.awesomeThings)).toBeTruthy();
-            expect(scope.awesomeThings.length > 5).toBeTruthy();
-        }));
-
-        it('should do something else', inject(function($controller: ng.IControllerService) {
-            expect(scope.awesomeThings).toBeUndefined();
-
-            $controller('MainCtrl', {
-                $scope: scope
-            });
-
-            expect(angular.isArray(scope.awesomeThings)).toBeTruthy();
-            expect(scope.awesomeThings.length > 5).toBeTruthy();
-        }));
+            expect(sut.loading).toBeTruthy();
+            builder.$rootScope.$apply();
+            expect(sut.loading).toBeFalsy();
+        });
     });
+
+    class SutFactory {
+        $rootScope: ng.IScope;
+
+        build(): MainController {
+            var sut;
+
+            inject(($injector: ng.auto.IInjectorService, $q: ng.IQService, $rootScope: ng.IScope) => {
+                this.$rootScope = $rootScope;
+
+                sut = $injector.get('$controller')(MainController.id, {
+                    relativeStrengthService: new MockRelativeStrengthService($q)
+                });
+            });
+
+            return sut;
+        }
+    }
 }
