@@ -6,7 +6,7 @@
         </div>
     </div>
     <div ng-hide="vm.loading" layout-padding>
-        <form name="calcForm" novalidate>
+        <form name="calcForm" novalidate ng-if="!vm.results">
             <div layout="row">
                 <md-select ng-model="vm.formula" placeholder="Formula" required>
                     <md-option ng-repeat="(key, value) in vm.metaData.formulas" value="{{key}}">{{value}}</md-option>
@@ -19,38 +19,60 @@
                 <md-input-container flex="">
                     <label>
                         Calculations in the form of: <br/>
-                        Name,Sex,Body Weight,(Optional) Weight<br/>
-                        Name 2,Sex,Body Weight,(Optional) Weight<br/>
-                        ...
+                        Name 2,Sex,Body Weight,Weight (Optional)<br/>
+                        Name 2,Sex,Body Weight,Weight (Optional)
                     </label>
-                    <textarea ng-model="vm.calculations" columns="50" md-maxlength="1000" required rsc-calculator-input-validator></textarea>
+                    <textarea ng-model="vm.calculations" required rsc-calculator-input-validator></textarea>
                 </md-input-container>
             </div>
-            <div layout="row" layout-align="end center">
+            <div layout="row" layout-align="start center">
                 <md-button class="md-raised md-primary" ng-disabled="calcForm.$invalid" ng-click="vm.calc(vm.calculations)">Calculate</md-button>
             </div>
         </form>
-
-        <md-data-table selectable-rows="false" table-card="{ title: 'Results', actionIcons: false, visible: true }">
-
-            <md-data-table-header-row>
-                <md-data-table-column>Id</md-data-table-column>
-                <md-data-table-column>Sex</md-data-table-column>
-                <md-data-table-column>Body Weight</md-data-table-column>
-                <md-data-table-column>Weight</md-data-table-column>
-                <md-data-table-column>Coefficient</md-data-table-column>
-                <md-data-table-column>Score</md-data-table-column>
-            </md-data-table-header-row>
-
-            <md-data-table-row ng-repeat="r in vm.results">
-                <md-data-table-cell>{{r.id}}</md-data-table-cell>
-                <md-data-table-cell>{{r.sex}}</md-data-table-cell>
-                <md-data-table-cell>{{r.bodyWeight}}</md-data-table-cell>
-                <md-data-table-cell>{{r.weight}}</md-data-table-cell>
-                <md-data-table-cell>{{r.coefficient}}</md-data-table-cell>
-                <md-data-table-cell>{{r.score}}</md-data-table-cell>
-            </md-data-table-row>
-
-        </md-data-table>
+        <div ng-if="vm.results.length > 0">
+            <md-data-table-container>
+                <table md-data-table>
+                    <thead md-order="query.order" md-trigger="onOrderChange">
+                    <tr>
+                        <th>Id</th>
+                        <th>Sex</th>
+                        <th>Body Weight</th>
+                        <th>Weight</th>
+                        <th>Coefficient</th>
+                        <th>Score</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="r in :: vm.results track by $index">
+                        <td>{{r.id}}</td>
+                        <td>{{r.sex | sex}}</td>
+                        <td>{{r.bodyWeight}}</td>
+                        <td>{{r.weight}}</td>
+                        <td>
+                            <span>
+                                {{r.coefficient | number:3}}
+                                    <md-tooltip md-direction="right">
+                                        {{r.coefficient}}
+                                    </md-tooltip>
+                                    </span>
+                        </td>
+                        <td>
+                            <span>
+                                {{r.score | number:3}}
+                                <md-tooltip md-direction="right">
+                                    {{r.score}}
+                                </md-tooltip>
+                                    </span>
+                        </td>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </md-data-table-container>
+            <md-data-table-toolbar layout-align="start">
+                <md-button class="md-raised md-primary" ng-disabled="calcForm.$invalid" ng-click="vm.results = null;">Edit</md-button>
+                Count {{vm.results.length}}<br/>
+            </md-data-table-toolbar>
+        </div>
     </div>
 </md-content>

@@ -1,6 +1,4 @@
 module RelativeStrengthCalculator {
-    'use strict';
-
     class HtmlFiveMode {
         constructor($locationProvider: ng.ILocationProvider) {
             $locationProvider.html5Mode(true);

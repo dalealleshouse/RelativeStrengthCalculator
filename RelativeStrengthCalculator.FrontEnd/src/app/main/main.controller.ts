@@ -22,9 +22,6 @@ module RelativeStrengthCalculator {
         calc(calcs: string) {
             var requests = this.calculationInputParser.parse(calcs);
             this.results = this.relativeStrengthService.results(this.formula, this.weightUnits, requests);
-            this.results.$promise.then(() => {
-                console.log(this.results);
-            });
         }
     }
 

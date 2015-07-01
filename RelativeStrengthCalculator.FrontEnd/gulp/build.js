@@ -1,12 +1,18 @@
 'use strict';
 
 var gulp = require('gulp');
+var bower = require('gulp-bower');
+var seq = require('run-sequence');
 
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
 });
 
-module.exports = function(options) {
+module.exports = function (options) {
+    gulp.task('bower', function() {
+        return bower();
+    });
+
     gulp.task('partials', function() {
         return gulp.src([
                 options.src + '/app/**/*.html',
@@ -84,5 +90,7 @@ module.exports = function(options) {
         $.del([options.dist + '/', options.tmp + '/'], done);
     });
 
-    gulp.task('build', ['html', 'fonts', 'other']);
+    gulp.task('build', function(cb) {
+        seq('bower', ['html', 'fonts', 'other'], cb)
+    });
 };

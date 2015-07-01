@@ -1,6 +1,4 @@
 ﻿module RelativeStrengthCalculator {
-    'use strict';
-
     export interface IRelativeStrengthService {
         baseUrl: string;
         buildRequestUrl: (formula: number|string, weightUnits: number|string) => string;
