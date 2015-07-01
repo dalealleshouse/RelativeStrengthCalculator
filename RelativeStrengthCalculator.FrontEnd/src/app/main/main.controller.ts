@@ -8,6 +8,7 @@ module RelativeStrengthCalculator {
         metaData: IRelativeStrengthMetaData = null;
         weightUnits = 1;
         formula = 1;
+        results: ICalculatorResults;
 
         /*@ngInject*/
         constructor(private relativeStrengthService: IRelativeStrengthService, private calculationInputParser: ICalculationInputParser) {
@@ -18,12 +19,11 @@ module RelativeStrengthCalculator {
             });
         }
 
-        calc(calcs) {
+        calc(calcs: string) {
             var requests = this.calculationInputParser.parse(calcs);
-            var results = this.relativeStrengthService.results(this.formula, this.weightUnits, requests);
-
-            results.$promise.then((data) => {
-                console.log(results);
+            this.results = this.relativeStrengthService.results(this.formula, this.weightUnits, requests);
+            this.results.$promise.then(() => {
+                console.log(this.results);
             });
         }
     }

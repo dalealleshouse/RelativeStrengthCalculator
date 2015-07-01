@@ -1,11 +1,11 @@
-<div layout="column" layout-align="center center">
-    <md-content ng-show="vm.loading" class="loading" layout-padding>
+<md-content layout="column" layout-align="center center" ng-cloak>
+    <div ng-show="vm.loading" class="loading" layout-padding>
         <h1 class="md-title">Loading...</h1>
         <div layout="row" layout-sm="column" layout-align="center center">
             <md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
         </div>
-    </md-content>
-    <md-content ng-hide="vm.loading" layout-padding>
+    </div>
+    <div ng-hide="vm.loading" layout-padding>
         <form name="calcForm" novalidate>
             <div layout="row">
                 <md-select ng-model="vm.formula" placeholder="Formula" required>
@@ -17,13 +17,40 @@
             </div>
             <div layout="column">
                 <md-input-container flex="">
-                    <label>Calculations <cite>i.e: id,Male,100,200 where 100 is body weight and 200 is weight lifted</cite></label>
-                    <textarea ng-model="vm.calculations" columns="1" md-maxlength="500" required rsc-calculator-input-validator></textarea>
+                    <label>
+                        Calculations in the form of: <br/>
+                        Name,Sex,Body Weight,(Optional) Weight<br/>
+                        Name 2,Sex,Body Weight,(Optional) Weight<br/>
+                        ...
+                    </label>
+                    <textarea ng-model="vm.calculations" columns="50" md-maxlength="1000" required rsc-calculator-input-validator></textarea>
                 </md-input-container>
             </div>
             <div layout="row" layout-align="end center">
                 <md-button class="md-raised md-primary" ng-disabled="calcForm.$invalid" ng-click="vm.calc(vm.calculations)">Calculate</md-button>
             </div>
         </form>
-    </md-content>
-</div>
+
+        <md-data-table selectable-rows="false" table-card="{ title: 'Results', actionIcons: false, visible: true }">
+
+            <md-data-table-header-row>
+                <md-data-table-column>Id</md-data-table-column>
+                <md-data-table-column>Sex</md-data-table-column>
+                <md-data-table-column>Body Weight</md-data-table-column>
+                <md-data-table-column>Weight</md-data-table-column>
+                <md-data-table-column>Coefficient</md-data-table-column>
+                <md-data-table-column>Score</md-data-table-column>
+            </md-data-table-header-row>
+
+            <md-data-table-row ng-repeat="r in vm.results">
+                <md-data-table-cell>{{r.id}}</md-data-table-cell>
+                <md-data-table-cell>{{r.sex}}</md-data-table-cell>
+                <md-data-table-cell>{{r.bodyWeight}}</md-data-table-cell>
+                <md-data-table-cell>{{r.weight}}</md-data-table-cell>
+                <md-data-table-cell>{{r.coefficient}}</md-data-table-cell>
+                <md-data-table-cell>{{r.score}}</md-data-table-cell>
+            </md-data-table-row>
+
+        </md-data-table>
+    </div>
+</md-content>

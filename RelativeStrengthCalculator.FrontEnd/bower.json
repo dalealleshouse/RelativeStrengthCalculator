@@ -5,11 +5,16 @@
     "jquery": "~2.1.1",
     "angular-ui-router": "~0.2.15",
     "angular-material": "~0.10.0",
+    "md-data-table": "*",
     "angular": "~1.4.0",
     "lodash": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.0",
     "jasmine": "*"
+  },
+  "resolutions": {
+    "angular": "1.4.1",
+    "angular-material": "~0.10.0"
   }
 }

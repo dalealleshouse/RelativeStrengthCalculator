@@ -67,6 +67,7 @@
     <Compile Include="DecimalExtensions\PowerShould.cs" />
     <Compile Include="Helpers\CalculatorTestCase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recursion.cs" />
     <Compile Include="RelativeStrengthCalculatorFactory\BuildShould.cs" />
     <Compile Include="SchwartzMalone\SchwartzMaloneCalculator\AdjustedTotalShould.cs" />
     <Compile Include="SchwartzMalone\SchwartzMaloneCalculator\CoefficientShould.cs" />

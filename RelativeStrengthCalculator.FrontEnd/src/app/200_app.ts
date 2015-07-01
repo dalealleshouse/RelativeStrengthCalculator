@@ -2,5 +2,5 @@
 module RelativeStrengthCalculator {
     'use strict';
 
-    angular.module(appName, ['ui.router', 'ngMaterial']);
+    angular.module(appName, ['ui.router', 'ngMaterial', 'mdDataTable']);
 }
