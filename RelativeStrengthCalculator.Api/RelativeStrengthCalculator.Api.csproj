@@ -121,6 +121,16 @@
   <ItemGroup>
     <Content Include="App_Data\XmlDocument.xml" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="assets\images\angular-material.png" />
+    <Content Include="assets\images\angular.png" />
+    <Content Include="assets\images\browsersync.png" />
+    <Content Include="assets\images\gulp.png" />
+    <Content Include="assets\images\jasmine.png" />
+    <Content Include="assets\images\karma.png" />
+    <Content Include="assets\images\less.png" />
+    <Content Include="assets\images\protractor.png" />
+    <Content Include="assets\images\typescript.png" />
+    <Content Include="assets\images\yeoman.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -135,10 +145,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="index.html" />
     <Content Include="RelativeStrengthCalculator.Api.ruleset" />
     <Content Include="Areas\HelpPage\Views\Shared\Error.cshtml" />
     <Content Include="Icon.png" />
     <Content Include="Resources\results.html" />
+    <Content Include="Scripts\app-be782c85.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\result.css" />
@@ -147,6 +159,13 @@
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\vendor-521f97ef.js" />
+    <Content Include="styles\app-0a3cd60c.css" />
+    <Content Include="styles\app-1941836f.css" />
+    <Content Include="styles\app-c3bd91a7.css" />
+    <Content Include="styles\vendor-1104eb3a.css" />
+    <Content Include="styles\vendor-3eaf09ef.css" />
+    <Content Include="styles\vendor-d0cf8ff7.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -242,6 +261,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="app\components\navbar\" />
+    <Folder Include="app\main\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
